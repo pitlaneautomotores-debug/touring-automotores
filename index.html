@@ -12,6 +12,56 @@
   </style>
 </head>
 <body>
+<style>
+#pitlane-intro[hidden]{display:none!important}
+#pitlane-intro{position:fixed;inset:0;z-index:1000;color:#f7f6f2;isolation:isolate;overflow:hidden;touch-action:none;font-family:Arial,sans-serif}
+.intro-door{position:absolute;left:0;width:100%;height:51%;background:#0a0b0c;z-index:-1;transition:transform 1.05s cubic-bezier(.76,0,.24,1)}
+.intro-door.top-door{top:0}.intro-door.bottom-door{bottom:0}
+.intro-header{position:absolute;top:32px;left:5vw;right:5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+.intro-skip{color:#e2e2df;background:none;border:1px solid #454648;border-radius:30px;padding:12px 18px;font-size:11px;letter-spacing:.05em;cursor:pointer}
+.intro-skip:focus-visible{outline:2px solid white;outline-offset:5px}
+.intro-stage{position:absolute;top:50%;left:50%;width:min(76vw,820px);transform:translate(-50%,-50%)}
+.intro-wordmark{display:flex;justify-content:center;padding:0 8%;opacity:.8}
+.intro-wordmark .pitlane-logo{width:100%;height:auto;color:#f7f6f2}
+.intro-parking{position:relative;height:clamp(100px,19vw,180px);margin-top:35px;border-bottom:1px solid #303235}
+.intro-parking:after{content:'';position:absolute;bottom:0;left:35%;width:30%;height:12px;border:1px solid #686a6d;border-top:0;opacity:.6}
+.intro-car{position:absolute;width:clamp(180px,34vw,350px);bottom:2px;left:50%;margin-left:calc(clamp(180px,34vw,350px) / -2);will-change:transform;filter:drop-shadow(0 14px 12px #000);transform:translateX(-110vw)}
+.intro-car svg{width:100%;display:block}.intro-wheel{transform-box:fill-box;transform-origin:center}
+.intro-caption{text-align:center;margin-top:28px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8e9297}
+.intro-bottom{position:absolute;bottom:max(35px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(78vw,320px);text-align:center}
+.intro-instruction{font-size:12px;color:#b5b8bc;letter-spacing:.04em;margin:0 0 20px}.intro-meter{height:1px;background:#313335;overflow:hidden}.intro-meter span{display:block;height:100%;background:#eee;transform:scaleX(0);transform-origin:left}
+.intro-stage,.intro-header,.intro-bottom{transition:opacity .35s ease}
+#pitlane-intro.intro-opening .top-door{transform:translateY(-101%)}
+#pitlane-intro.intro-opening .bottom-door{transform:translateY(101%)}
+#pitlane-intro.intro-opening .intro-stage,#pitlane-intro.intro-opening .intro-header,#pitlane-intro.intro-opening .intro-bottom{opacity:0;pointer-events:none}
+@media(max-width:600px){.intro-header{top:22px}.intro-header>span{font-size:8px;letter-spacing:.12em}.intro-stage{width:88vw}.intro-parking{margin-top:24px}.intro-caption{font-size:8px;letter-spacing:.17em}}
+@media(prefers-reduced-motion:reduce){#pitlane-intro{display:none!important}}
+</style>
+<section id="pitlane-intro" role="dialog" aria-modal="true" aria-label="Bienvenido a Pitlane Automotores" aria-describedby="intro-instruction" hidden>
+  <div class="intro-door top-door"></div><div class="intro-door bottom-door"></div>
+  <div class="intro-header"><span>Yerba Buena · Tucumán</span><button class="intro-skip" type="button">Saltar intro ↗</button></div>
+  <div class="intro-stage">
+    <div class="intro-wordmark" aria-hidden="true"></div>
+    <div class="intro-parking" aria-hidden="true"><div class="intro-car">
+      <svg viewBox="0 0 600 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="intro-metal" x1="300" y1="65" x2="300" y2="166" gradientUnits="userSpaceOnUse"><stop stop-color="#f0f1f0"/><stop offset=".38" stop-color="#9b9fa2"/><stop offset=".58" stop-color="#d8d9d6"/><stop offset="1" stop-color="#45484c"/></linearGradient><linearGradient id="intro-glass" x1="226" y1="65" x2="330" y2="113" gradientUnits="userSpaceOnUse"><stop stop-color="#52606b"/><stop offset="1" stop-color="#141a20"/></linearGradient></defs>
+        <ellipse cx="310" cy="171" rx="258" ry="9" fill="#000" opacity=".7"/>
+        <path d="M36 134L51 109L152 94C185 80 209 52 255 48L328 49C365 52 397 72 428 98L515 108L561 125L570 149L557 160H44L30 151Z" fill="url(#intro-metal)" stroke="#b9bbbd" stroke-width="2"/>
+        <path d="M172 96C198 79 222 60 255 58L323 59C352 63 380 77 403 98Z" fill="url(#intro-glass)" stroke="#60676c" stroke-width="3"/>
+        <path d="M290 60L292 98M329 106L339 143L230 143L224 104" stroke="#5a6065" stroke-width="2"/>
+        <path d="M50 121C159 115 393 113 548 130M169 151H446" stroke="#f5f5f3" stroke-opacity=".45" stroke-width="2"/>
+        <path d="M535 119L558 128L548 135L522 130Z" fill="#f3f1dc"/><path d="M43 119L63 116L58 129L37 135" fill="#952e2e"/>
+        <path d="M542 145H565M312 112H328" stroke="#252a2e" stroke-width="4" stroke-linecap="round"/>
+        <path d="M371 92L391 95L396 102L376 102Z" fill="#a3a8ab"/>
+        <g class="intro-wheel"><circle cx="143" cy="147" r="36" fill="#101214" stroke="#42474d" stroke-width="3"/><circle cx="143" cy="147" r="25" fill="#71787e" stroke="#c9ccce" stroke-width="2"/><path d="M143 123V171M119 147H167M126 130L160 164M126 164L160 130" stroke="#181d22" stroke-width="5"/><circle cx="143" cy="147" r="7" fill="#bec2c4"/></g>
+        <g class="intro-wheel"><circle cx="468" cy="147" r="36" fill="#101214" stroke="#42474d" stroke-width="3"/><circle cx="468" cy="147" r="25" fill="#71787e" stroke="#c9ccce" stroke-width="2"/><path d="M468 123V171M444 147H492M451 130L485 164M451 164L485 130" stroke="#181d22" stroke-width="5"/><circle cx="468" cy="147" r="7" fill="#bec2c4"/></g>
+      </svg>
+    </div></div>
+    <p class="intro-caption">Calidad antes que cantidad</p>
+  </div>
+  <div class="intro-bottom"><p class="intro-instruction" id="intro-instruction">Deslizá hacia abajo para entrar</p><div class="intro-meter" aria-hidden="true"><span></span></div></div>
+</section>
+
   <div class="top"><span>Yerba Buena · Tucumán</span><span>Calidad antes que cantidad</span></div>
   <nav class="nav">
     <a class="brand" href="#inicio"><svg class="pitlane-logo" viewBox="0 0 520 92" role="img" aria-label="Pitlane Automotores">
@@ -74,5 +124,105 @@ let category='Todos',query='';
 function render(){const q=query.trim().toLowerCase();const list=vehicles.filter(v=>(category==='Todos'||v.category===category)&&(!q||`${v.brand} ${v.model} ${v.version} ${v.year}`.toLowerCase().includes(q)));const grid=document.getElementById('vehicle-grid');grid.innerHTML=list.map(v=>`<a class="card" href="vehiculo.html?id=${encodeURIComponent(v.id)}" aria-label="Ver ficha completa de ${v.brand} ${v.model} ${v.version}"><div class="media"><img src="${v.image}" alt="${v.brand} ${v.model}"><span class="badge">${v.id}</span></div><div class="info"><div class="row"><div><small>${v.brand}</small><h3>${v.model}</h3></div><strong>${v.price}</strong></div><p>${v.version}</p><div class="meta"><span>${v.year}</span><span>${v.km}</span><span>${v.category}</span><span>1 disponible</span></div><div class="consult"><span>Ver ficha completa</span><span>→</span></div></div></a>`).join('');document.getElementById('empty').classList.toggle('hidden',list.length>0)}
 document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.value;render()});document.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.cat;document.querySelectorAll('[data-cat]').forEach(x=>x.classList.toggle('active',x===b));render()}));document.getElementById('hero-search').addEventListener('submit',e=>{e.preventDefault();query=document.getElementById('hero-q').value;category='Todos';document.getElementById('stock-q').value=query;document.querySelectorAll('[data-cat]').forEach(b=>b.classList.toggle('active',b.dataset.cat==='Todos'));render();document.getElementById('stock').scrollIntoView({behavior:'smooth'})});render();
 </script>
+<script>
+(() => {
+  const intro = document.getElementById('pitlane-intro');
+  const key = 'pitlane-intro-seen-v1';
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let seen = false;
+  try { seen = localStorage.getItem(key) === '1'; } catch (_) {}
+  if (seen || motion.matches || location.hash || window.scrollY > 0) return;
+  const logo = document.querySelector('.nav .pitlane-logo');
+  if (!logo) return;
+  intro.querySelector('.intro-wordmark').append(logo.cloneNode(true));
+  const skip = intro.querySelector('.intro-skip');
+  const car = intro.querySelector('.intro-car');
+  const wheels = intro.querySelectorAll('.intro-wheel');
+  const meter = intro.querySelector('.intro-meter span');
+  const rootOverflow = document.documentElement.style.overflow;
+  const bodyOverflow = document.body.style.overflow;
+  const siblings = [...document.body.children].filter(el => el !== intro && !['SCRIPT','STYLE'].includes(el.tagName));
+  const previousInert = siblings.map(el => el.inert);
+  let target = 0, progress = 0, frame = 0, closed = false, closing = false, touchY = null, finishTimer = 0;
+  function remember() { try { localStorage.setItem(key, '1'); } catch (_) {} }
+  function cleanup() {
+    if (closed) return;
+    closed = true;
+    clearTimeout(finishTimer);
+    cancelAnimationFrame(frame);
+    intro.hidden = true;
+    document.documentElement.style.overflow = rootOverflow;
+    document.body.style.overflow = bodyOverflow;
+    siblings.forEach((el, i) => { el.inert = previousInert[i]; });
+    window.removeEventListener('wheel', onWheel);
+    intro.removeEventListener('touchstart', onTouchStart);
+    intro.removeEventListener('touchmove', onTouchMove);
+    window.removeEventListener('keydown', onKey);
+    motion.removeEventListener('change', onMotion);
+    document.querySelector('.nav .brand')?.focus({preventScroll:true});
+  }
+  function finish(immediate = false) {
+    if (closed) return;
+    remember();
+    if (immediate) { cleanup(); return; }
+    if (closing) return;
+    closing = true;
+    intro.classList.add('intro-opening');
+    finishTimer = setTimeout(cleanup, 1100);
+  }
+  function draw() {
+    progress += (target - progress) * .13;
+    if (Math.abs(target - progress) < .0008) progress = target;
+    const ease = 1 - Math.pow(1 - progress, 2);
+    car.style.transform = `translateX(${(ease - 1) * 110}vw)`;
+    wheels.forEach(wheel => { wheel.style.transform = `rotate(${ease * 900}deg)`; });
+    meter.style.transform = `scaleX(${progress})`;
+    if (target === 1 && progress > .998) {
+      frame = 0;
+      finishTimer = setTimeout(() => finish(), 320);
+    } else if (progress !== target) frame = requestAnimationFrame(draw);
+    else frame = 0;
+  }
+  function advance(delta) {
+    if (closing || closed || target === 1) return;
+    target = Math.min(1, Math.max(0, target + delta / 850));
+    if (!frame) frame = requestAnimationFrame(draw);
+  }
+  function onWheel(event) {
+    if (event.ctrlKey || event.metaKey) return;
+    event.preventDefault();
+    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
+    advance(Math.max(-180, Math.min(180, event.deltaY * unit)));
+  }
+  function onTouchStart(event) { touchY = event.touches.length === 1 ? event.touches[0].clientY : null; }
+  function onTouchMove(event) {
+    if (touchY === null || event.touches.length !== 1) return;
+    event.preventDefault();
+    const y = event.touches[0].clientY;
+    advance((touchY - y) * 2.4);
+    touchY = y;
+  }
+  function onKey(event) {
+    if (event.key === 'Escape') { event.preventDefault(); finish(true); }
+    else if (event.key === 'Tab') { event.preventDefault(); skip.focus(); }
+    else if (['ArrowDown','PageDown',' '].includes(event.key) && event.target !== skip) { event.preventDefault(); advance(180); }
+    else if (event.key === 'ArrowDown' || event.key === 'PageDown') { event.preventDefault(); advance(180); }
+    else if (event.key === 'ArrowUp') { event.preventDefault(); advance(-180); }
+  }
+  function onMotion(event) { if (event.matches) finish(true); }
+  skip.addEventListener('click', () => finish(true));
+  window.addEventListener('wheel', onWheel, {passive:false});
+  intro.addEventListener('touchstart', onTouchStart, {passive:true});
+  intro.addEventListener('touchmove', onTouchMove, {passive:false});
+  window.addEventListener('keydown', onKey);
+  motion.addEventListener('change', onMotion);
+  siblings.forEach(el => { el.inert = true; });
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+  intro.hidden = false;
+  skip.focus({preventScroll:true});
+})();
+</script>
+
 </body>
 </html>
