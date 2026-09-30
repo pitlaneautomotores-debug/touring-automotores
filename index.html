@@ -127,11 +127,8 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
 <script>
 (() => {
   const intro = document.getElementById('pitlane-intro');
-  const key = 'pitlane-intro-seen-v1';
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let seen = false;
-  try { seen = localStorage.getItem(key) === '1'; } catch (_) {}
-  if (seen || motion.matches || location.hash || window.scrollY > 0) return;
+  if (motion.matches) return;
   const logo = document.querySelector('.nav .pitlane-logo');
   if (!logo) return;
   intro.querySelector('.intro-wordmark').append(logo.cloneNode(true));
@@ -144,7 +141,6 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   const siblings = [...document.body.children].filter(el => el !== intro && !['SCRIPT','STYLE'].includes(el.tagName));
   const previousInert = siblings.map(el => el.inert);
   let target = 0, progress = 0, frame = 0, closed = false, closing = false, touchY = null, finishTimer = 0;
-  function remember() { try { localStorage.setItem(key, '1'); } catch (_) {} }
   function cleanup() {
     if (closed) return;
     closed = true;
@@ -163,7 +159,6 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   }
   function finish(immediate = false) {
     if (closed) return;
-    remember();
     if (immediate) { cleanup(); return; }
     if (closing) return;
     closing = true;
