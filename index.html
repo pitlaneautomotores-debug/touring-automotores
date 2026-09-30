@@ -26,7 +26,7 @@
 .intro-parking{position:relative;height:clamp(100px,19vw,180px);margin-top:35px;border-bottom:1px solid #303235}
 .intro-parking:after{content:'';position:absolute;bottom:0;left:35%;width:30%;height:12px;border:1px solid #686a6d;border-top:0;opacity:.6}
 .intro-car{position:absolute;width:clamp(180px,34vw,350px);bottom:2px;left:50%;margin-left:calc(clamp(180px,34vw,350px) / -2);will-change:transform;filter:drop-shadow(0 14px 12px #000);transform:translateX(-110vw)}
-.intro-car svg{width:100%;display:block}.intro-wheel{transform-box:fill-box;transform-origin:center}
+.intro-car img{width:100%;height:auto;display:block;user-select:none}
 .intro-caption{text-align:center;margin-top:28px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8e9297}
 .intro-bottom{position:absolute;bottom:max(35px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(78vw,320px);text-align:center}
 .intro-instruction{font-size:12px;color:#b5b8bc;letter-spacing:.04em;margin:0 0 20px}.intro-meter{height:1px;background:#313335;overflow:hidden}.intro-meter span{display:block;height:100%;background:#eee;transform:scaleX(0);transform-origin:left}
@@ -43,19 +43,7 @@
   <div class="intro-stage">
     <div class="intro-wordmark" aria-hidden="true"></div>
     <div class="intro-parking" aria-hidden="true"><div class="intro-car">
-      <svg viewBox="0 0 600 190" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="intro-metal" x1="300" y1="65" x2="300" y2="166" gradientUnits="userSpaceOnUse"><stop stop-color="#f0f1f0"/><stop offset=".38" stop-color="#9b9fa2"/><stop offset=".58" stop-color="#d8d9d6"/><stop offset="1" stop-color="#45484c"/></linearGradient><linearGradient id="intro-glass" x1="226" y1="65" x2="330" y2="113" gradientUnits="userSpaceOnUse"><stop stop-color="#52606b"/><stop offset="1" stop-color="#141a20"/></linearGradient></defs>
-        <ellipse cx="310" cy="171" rx="258" ry="9" fill="#000" opacity=".7"/>
-        <path d="M36 134L51 109L152 94C185 80 209 52 255 48L328 49C365 52 397 72 428 98L515 108L561 125L570 149L557 160H44L30 151Z" fill="url(#intro-metal)" stroke="#b9bbbd" stroke-width="2"/>
-        <path d="M172 96C198 79 222 60 255 58L323 59C352 63 380 77 403 98Z" fill="url(#intro-glass)" stroke="#60676c" stroke-width="3"/>
-        <path d="M290 60L292 98M329 106L339 143L230 143L224 104" stroke="#5a6065" stroke-width="2"/>
-        <path d="M50 121C159 115 393 113 548 130M169 151H446" stroke="#f5f5f3" stroke-opacity=".45" stroke-width="2"/>
-        <path d="M535 119L558 128L548 135L522 130Z" fill="#f3f1dc"/><path d="M43 119L63 116L58 129L37 135" fill="#952e2e"/>
-        <path d="M542 145H565M312 112H328" stroke="#252a2e" stroke-width="4" stroke-linecap="round"/>
-        <path d="M371 92L391 95L396 102L376 102Z" fill="#a3a8ab"/>
-        <g class="intro-wheel"><circle cx="143" cy="147" r="36" fill="#101214" stroke="#42474d" stroke-width="3"/><circle cx="143" cy="147" r="25" fill="#71787e" stroke="#c9ccce" stroke-width="2"/><path d="M143 123V171M119 147H167M126 130L160 164M126 164L160 130" stroke="#181d22" stroke-width="5"/><circle cx="143" cy="147" r="7" fill="#bec2c4"/></g>
-        <g class="intro-wheel"><circle cx="468" cy="147" r="36" fill="#101214" stroke="#42474d" stroke-width="3"/><circle cx="468" cy="147" r="25" fill="#71787e" stroke="#c9ccce" stroke-width="2"/><path d="M468 123V171M444 147H492M451 130L485 164M451 164L485 130" stroke="#181d22" stroke-width="5"/><circle cx="468" cy="147" r="7" fill="#bec2c4"/></g>
-      </svg>
+      <img src="public/porsche-white.svg" width="1000" height="317" alt="" fetchpriority="high" decoding="async" draggable="false">
     </div></div>
     <p class="intro-caption">Calidad antes que cantidad</p>
   </div>
@@ -134,7 +122,6 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   intro.querySelector('.intro-wordmark').append(logo.cloneNode(true));
   const skip = intro.querySelector('.intro-skip');
   const car = intro.querySelector('.intro-car');
-  const wheels = intro.querySelectorAll('.intro-wheel');
   const meter = intro.querySelector('.intro-meter span');
   const rootOverflow = document.documentElement.style.overflow;
   const bodyOverflow = document.body.style.overflow;
@@ -170,7 +157,6 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     if (Math.abs(target - progress) < .0008) progress = target;
     const ease = 1 - Math.pow(1 - progress, 2);
     car.style.transform = `translateX(${(ease - 1) * 110}vw)`;
-    wheels.forEach(wheel => { wheel.style.transform = `rotate(${ease * 900}deg)`; });
     meter.style.transform = `scaleX(${progress})`;
     if (target === 1 && progress > .998) {
       frame = 0;
