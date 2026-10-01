@@ -220,7 +220,6 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     const end = parking.getBoundingClientRect().left + parking.offsetWidth / 2 - car.offsetWidth / 2;
     return (start - end) * (1 - ease);
   }
-  car.style.transform = 'translateX(' + travelPosition(0) + 'px)';
   // Reflect the assembled car, including rotating rims and light emission.
   const floor = document.createElement('div');
   floor.className = 'intro-floor-reflection';
@@ -357,6 +356,7 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   document.documentElement.style.overflow = 'hidden';
   document.body.style.overflow = 'hidden';
   intro.hidden = false;
+  draw(performance.now());
   skip.focus({preventScroll:true});
 })();
 </script>
