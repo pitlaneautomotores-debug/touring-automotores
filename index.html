@@ -18,7 +18,7 @@
 .intro-door{position:absolute;left:0;width:100%;height:51%;background:#0a0b0c;z-index:-1;transition:transform 1.05s cubic-bezier(.76,0,.24,1)}
 #pitlane-intro:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(255,255,255,.045),transparent 62%),radial-gradient(ellipse at center,transparent 48%,rgba(0,0,0,.36));transition:opacity .35s ease}
 #pitlane-intro.intro-opening:before{opacity:0}
-.intro-floor-reflection{position:absolute;left:0;top:100%;width:100%;height:100%;transform:scaleY(-1);opacity:.22;filter:blur(.35px);-webkit-mask-image:linear-gradient(to top,#000,transparent 34%);mask-image:linear-gradient(to top,#000,transparent 34%);pointer-events:none}
+.intro-floor-reflection{position:absolute;left:0;top:100%;width:100%;height:100%;transform:scaleY(-1);opacity:.22;-webkit-mask-image:linear-gradient(to top,#000,transparent 34%);mask-image:linear-gradient(to top,#000,transparent 34%);pointer-events:none}
 .intro-floor-image{position:absolute;inset:0}
 .intro-parking:before{content:'';position:absolute;left:50%;top:100%;width:clamp(180px,36vw,380px);height:35px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0,rgba(245,248,255,.18),rgba(245,248,255,.04) 42%,transparent 72%);opacity:0;transition:opacity .4s ease;pointer-events:none}
 .intro-parked .intro-parking:before{opacity:1}
@@ -32,6 +32,7 @@
 .intro-parking{position:relative;height:clamp(100px,19vw,180px);margin-top:35px;border-bottom:1px solid #303235}
 .intro-parking:after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid #686a6d;border-top:0;opacity:.6;transition:border-color .4s ease,opacity .4s ease,filter .4s ease}
 .intro-parked .intro-parking:after{border-color:#fff;opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,.85)) drop-shadow(0 0 10px rgba(255,255,255,.5)) drop-shadow(0 0 22px rgba(255,255,255,.25))}
+.intro-track-fill{position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:#fff;box-shadow:0 0 10px rgba(255,255,255,.4);transform:scaleX(0);transform-origin:left;pointer-events:none}
 .intro-car{position:absolute;width:clamp(180px,34vw,350px);bottom:2px;left:50%;margin-left:calc(clamp(180px,34vw,350px) / -2);will-change:transform;transform:translateX(-110vw)}
 .intro-car img{width:100%;height:auto;display:block;user-select:none}.intro-wheel-layer,.intro-glass-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .intro-caption{text-align:center;margin-top:28px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8e9297}
@@ -123,12 +124,12 @@
         </g>
       </svg>
     </div></div>
-    <p class="intro-caption">Calidad antes que cantidad</p>
+
   </div>
   <div class="intro-bottom"><p class="intro-instruction" id="intro-instruction">Deslizá hacia abajo para entrar</p><div class="intro-meter" aria-hidden="true"><span></span></div></div>
 </section>
 
-  <div class="top"><span>Yerba Buena · Tucumán</span><span>Calidad antes que cantidad</span></div>
+  <div class="top"><span>Yerba Buena · Tucumán</span></div>
   <nav class="nav">
     <a class="brand" href="#inicio"><svg class="pitlane-logo" viewBox="0 0 520 92" role="img" aria-label="Pitlane Automotores">
   <g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
@@ -173,7 +174,7 @@
     <rect x="446" y="77" width="64" height="2" rx="1"/>
     <text x="260" y="82" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="500" letter-spacing="8">AUTOMOTORES</text>
   </g>
-</svg></div><p>Selección, intermediación, consignación y permuta de vehículos usados.</p></div><div class="footer-col"><strong>Navegación</strong><a href="#stock">Comprar</a><a href="#operar" data-intent="vender">Vender</a><a href="#operar" data-intent="permutar">Permutar</a><a href="#como-funciona">Cómo funciona</a></div><div class="footer-col"><strong>Contacto</strong><span>Yerba Buena, Tucumán</span><a class="js-wa" data-msg="Hola PITLANE, quiero hacer una consulta." target="_blank">+54 9 381 615-8785</a><span>Atención por WhatsApp</span></div></div><div class="bottom"><span>© 2026 PITLANE Automotores</span><span>Calidad antes que cantidad.</span></div></footer>
+</svg></div><p>Selección, intermediación, consignación y permuta de vehículos usados.</p></div><div class="footer-col"><strong>Navegación</strong><a href="#stock">Comprar</a><a href="#operar" data-intent="vender">Vender</a><a href="#operar" data-intent="permutar">Permutar</a><a href="#como-funciona">Cómo funciona</a></div><div class="footer-col"><strong>Contacto</strong><span>Yerba Buena, Tucumán</span><a class="js-wa" data-msg="Hola PITLANE, quiero hacer una consulta." target="_blank">+54 9 381 615-8785</a><span>Atención por WhatsApp</span></div></div><div class="bottom"><span>© 2026 PITLANE Automotores</span></div></footer>
   <a class="fab js-wa" data-msg="Hola PITLANE, quiero hacer una consulta." target="_blank" aria-label="WhatsApp">W</a>
 <script src="public/vehicles.js"></script>
 <script>
@@ -201,6 +202,25 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   const skip = intro.querySelector('.intro-skip');
   const car = intro.querySelector('.intro-car');
   const parking = intro.querySelector('.intro-parking');
+  const trackFill = document.createElement('i');
+  trackFill.className = 'intro-track-fill';
+  trackFill.setAttribute('aria-hidden', 'true');
+  parking.prepend(trackFill);
+  const motionSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  motionSvg.setAttribute('width', '0');
+  motionSvg.setAttribute('height', '0');
+  motionSvg.setAttribute('aria-hidden', 'true');
+  motionSvg.style.position = 'absolute';
+  motionSvg.innerHTML = '<defs><filter id="porsche-travel-blur" x="-20%" y="-20%" width="140%" height="180%"><feGaussianBlur stdDeviation="0 0"/></filter></defs>';
+  parking.prepend(motionSvg);
+  const travelBlur = motionSvg.querySelector('feGaussianBlur');
+  car.style.filter = 'url(#porsche-travel-blur)';
+  function travelPosition(ease) {
+    const start = window.innerWidth * .09;
+    const end = parking.getBoundingClientRect().left + parking.offsetWidth / 2 - car.offsetWidth / 2;
+    return (start - end) * (1 - ease);
+  }
+  car.style.transform = 'translateX(' + travelPosition(0) + 'px)';
   // Reflect the assembled car, including rotating rims and light emission.
   const floor = document.createElement('div');
   floor.className = 'intro-floor-reflection';
@@ -263,11 +283,11 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   function draw(timestamp) {
     const dt = previousFrameTime === null ? 1000 / 60 : Math.min(50, Math.max(0, timestamp - previousFrameTime));
     previousFrameTime = timestamp;
-    const previousEase = 1 - Math.pow(1 - progress, 2);
-    progress += (target - progress) * (1 - Math.exp(-dt / 120));
+    const previousEase = 1 - Math.pow(1 - progress, 2.4);
+    progress += (target - progress) * (1 - Math.exp(-dt / 40));
     if (Math.abs(target - progress) < .0008) progress = target;
-    const ease = 1 - Math.pow(1 - progress, 2);
-    car.style.transform = `translateX(${(ease - 1) * 110}vw)`;
+    const ease = 1 - Math.pow(1 - progress, 2.4);
+    car.style.transform = `translateX(${travelPosition(ease)}px)`;
     // Rolling without slip: angle = distance / tire radius (radians).
     // A fixed light sweeps backward across the glass as the car moves forward.
     // Position uses the same eased travel as the wheels, including reverse and stop.
@@ -282,9 +302,12 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     const frontEdge = carBounds.left + carWidth * .853;
     const parked = rearEdge >= bayLeft && frontEdge <= bayLeft + bayWidth;
     intro.classList.toggle('intro-parked', parked);
-    intro.classList.toggle('intro-braking', !parked && ease > .88 && ease > previousEase);
-    const distance = ease * window.innerWidth * 1.1;
-    const speed = dt > 0 ? Math.abs(ease - previousEase) * window.innerWidth * 1.1 * 1000 / dt : 0;
+    intro.classList.toggle('intro-braking', !parked && ease > .7 && ease > previousEase);
+    const travel = Math.abs(travelPosition(0));
+    const distance = ease * travel;
+    trackFill.style.transform = `scaleX(${Math.min(1, Math.max(0, (frontEdge - bayBounds.left) / bayBounds.width))})`;
+    const speed = dt > 0 ? Math.abs(ease - previousEase) * travel * 1000 / dt : 0;
+    travelBlur.setAttribute('stdDeviation', `${progress === target ? 0 : Math.min(1.3, speed * .0012)} 0`);
     wheels.forEach(wheel => {
       const radius = carWidth * Number(wheel.dataset.radius) / 1000;
       wheel.setAttribute('transform', `rotate(${distance / radius * 180 / Math.PI})`);
@@ -299,21 +322,21 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   }
   function advance(delta) {
     if (closing || closed || target === 1) return;
-    target = Math.min(1, Math.max(0, target + delta / 850));
+    target = Math.min(1, Math.max(0, target + delta / Math.max(650, window.innerHeight * 1.4)));
     if (!frame) frame = requestAnimationFrame(draw);
   }
   function onWheel(event) {
     if (event.ctrlKey || event.metaKey) return;
     event.preventDefault();
     const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
-    advance(Math.max(-180, Math.min(180, event.deltaY * unit)));
+    advance(event.deltaY * unit);
   }
   function onTouchStart(event) { touchY = event.touches.length === 1 ? event.touches[0].clientY : null; }
   function onTouchMove(event) {
     if (touchY === null || event.touches.length !== 1) return;
     event.preventDefault();
     const y = event.touches[0].clientY;
-    advance((touchY - y) * 2.4);
+    advance((touchY - y) * 1.5);
     touchY = y;
   }
   function onKey(event) {
