@@ -16,6 +16,12 @@
 #pitlane-intro[hidden]{display:none!important}
 #pitlane-intro{position:fixed;inset:0;z-index:1000;color:#f7f6f2;isolation:isolate;overflow:hidden;touch-action:none;font-family:Arial,sans-serif}
 .intro-door{position:absolute;left:0;width:100%;height:51%;background:#0a0b0c;z-index:-1;transition:transform 1.05s cubic-bezier(.76,0,.24,1)}
+#pitlane-intro:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,rgba(255,255,255,.045),transparent 62%),radial-gradient(ellipse at center,transparent 48%,rgba(0,0,0,.36));transition:opacity .35s ease}
+#pitlane-intro.intro-opening:before{opacity:0}
+.intro-floor-reflection{position:absolute;left:0;top:100%;width:100%;height:100%;transform:scaleY(-1);opacity:.22;filter:blur(.35px);-webkit-mask-image:linear-gradient(to top,#000,transparent 34%);mask-image:linear-gradient(to top,#000,transparent 34%);pointer-events:none}
+.intro-floor-image{position:absolute;inset:0}
+.intro-parking:before{content:'';position:absolute;left:50%;top:100%;width:clamp(180px,36vw,380px);height:35px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0,rgba(245,248,255,.18),rgba(245,248,255,.04) 42%,transparent 72%);opacity:0;transition:opacity .4s ease;pointer-events:none}
+.intro-parked .intro-parking:before{opacity:1}
 .intro-door.top-door{top:0}.intro-door.bottom-door{bottom:0}
 .intro-header{position:absolute;top:32px;left:5vw;right:5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
 .intro-skip{color:#e2e2df;background:none;border:1px solid #454648;border-radius:30px;padding:12px 18px;font-size:11px;letter-spacing:.05em;cursor:pointer}
@@ -195,8 +201,34 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   const skip = intro.querySelector('.intro-skip');
   const car = intro.querySelector('.intro-car');
   const parking = intro.querySelector('.intro-parking');
+  // Reflect the assembled car, including rotating rims and light emission.
+  const floor = document.createElement('div');
+  floor.className = 'intro-floor-reflection';
+  floor.setAttribute('aria-hidden', 'true');
+  const reflectedCar = car.cloneNode(true);
+  reflectedCar.className = 'intro-floor-image';
+  reflectedCar.removeAttribute('style');
+  // Each reflected SVG owns its filters, clips and gradients.
+  const ids = new Map();
+  reflectedCar.querySelectorAll('[id]').forEach(el => {
+    const oldId = el.id;
+    ids.set(oldId, oldId + '-floor');
+    el.id = oldId + '-floor';
+  });
+  reflectedCar.querySelectorAll('*').forEach(el => {
+    [...el.attributes].forEach(attr => {
+      let value = attr.value;
+      ids.forEach((newId, oldId) => {
+        value = value.split('url(#' + oldId + ')').join('url(#' + newId + ')');
+        if (value === '#' + oldId) value = '#' + newId;
+      });
+      if (value !== attr.value) el.setAttribute(attr.name, value);
+    });
+  });
+  floor.append(reflectedCar);
+  car.append(floor);
   const wheels = intro.querySelectorAll('.intro-wheel');
-  const reflection = intro.querySelector('.intro-glass-reflection');
+  const reflections = intro.querySelectorAll('.intro-glass-reflection');
   const meter = intro.querySelector('.intro-meter span');
   const rootOverflow = document.documentElement.style.overflow;
   const bodyOverflow = document.body.style.overflow;
@@ -239,7 +271,7 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     // Rolling without slip: angle = distance / tire radius (radians).
     // A fixed light sweeps backward across the glass as the car moves forward.
     // Position uses the same eased travel as the wheels, including reverse and stop.
-    reflection.setAttribute('transform', `translate(${650 - ease * 360} 0)`);
+    reflections.forEach(reflection => reflection.setAttribute('transform', `translate(${650 - ease * 360} 0)`));
     const carWidth = car.offsetWidth;
     // Illuminate only when the complete tire footprints are inside the marked bay.
     const carBounds = car.getBoundingClientRect();
