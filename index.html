@@ -31,6 +31,12 @@
 .intro-caption{text-align:center;margin-top:28px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8e9297}
 .intro-bottom{position:absolute;bottom:max(35px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(78vw,320px);text-align:center}
 .intro-instruction{font-size:12px;color:#b5b8bc;letter-spacing:.04em;margin:0 0 20px}.intro-meter{height:1px;background:#313335;overflow:hidden}.intro-meter span{display:block;height:100%;background:#eee;transform:scaleX(0);transform-origin:left}
+
+.intro-headlights{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.intro-headlight-emission{opacity:1;transition:opacity .22s ease-out}
+.intro-parked .intro-headlight-emission{opacity:0}
+@media(prefers-reduced-motion:reduce){.intro-headlight-emission{transition:none}}
+
 .intro-stage,.intro-header,.intro-bottom{transition:opacity .35s ease}
 #pitlane-intro.intro-opening .top-door{transform:translateY(-101%)}
 #pitlane-intro.intro-opening .bottom-door{transform:translateY(101%)}
@@ -69,6 +75,31 @@
             <path d="M-133 60H-125L-70 140H-78Z" fill="#dceaf5" opacity=".10"/>
           </g>
           <path d="M250 120Q405 141 556 128" fill="none" stroke="#91aaba" stroke-opacity=".15" stroke-width="2"/>
+        </g>
+      </svg>
+
+      <svg class="intro-headlights" viewBox="0 40 1000 298" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="headlight-bloom"><stop stop-color="#fff" stop-opacity=".6"/><stop offset=".2" stop-color="#f5f8ff" stop-opacity=".25"/><stop offset=".55" stop-color="#e8efff" stop-opacity=".055"/><stop offset="1" stop-color="#e8efff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="headlight-ground"><stop stop-color="#f8faff" stop-opacity=".12"/><stop offset=".45" stop-color="#f5f8ff" stop-opacity=".045"/><stop offset="1" stop-color="#f5f8ff" stop-opacity="0"/></radialGradient>
+          <linearGradient id="headlight-air" x1="890" y1="195" x2="1530" y2="290" gradientUnits="userSpaceOnUse"><stop stop-color="#f5f8ff" stop-opacity=".08"/><stop offset=".3" stop-color="#f5f8ff" stop-opacity=".025"/><stop offset="1" stop-color="#f5f8ff" stop-opacity="0"/></linearGradient>
+          <filter id="headlight-haze" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+          <filter id="headlight-soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.2"/></filter>
+          <clipPath id="headlight-lens"><path d="M842 153Q862 156 877 177L908 214Q887 205 871 185Q850 167 842 153Z"/></clipPath>
+        </defs>
+        <!-- Side view: only the near-side optic is visible. No invented second lamp. -->
+        <g class="intro-headlight-emission">
+          <path d="M893 194Q1140 213 1570 251L1570 346Q1200 312 896 203Z" fill="url(#headlight-air)" filter="url(#headlight-haze)"/>
+          <ellipse cx="1200" cy="339" rx="300" ry="16" fill="url(#headlight-ground)"/>
+          <ellipse cx="879" cy="186" rx="38" ry="22" transform="rotate(42 879 186)" fill="url(#headlight-bloom)"/>
+          <g clip-path="url(#headlight-lens)">
+            <path d="M852 162L859 166M866 165L873 171M878 188L886 195M893 193L900 201" stroke="#f5f9ff" stroke-width="3.2" stroke-linecap="round" filter="url(#headlight-soft)"/>
+            <ellipse cx="875" cy="181" rx="10" ry="4.2" transform="rotate(43 875 181)" fill="#f5f9ff" filter="url(#headlight-soft)"/>
+            <path d="M852 162L859 166M866 165L873 171M878 188L886 195M893 193L900 201" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>
+            <ellipse cx="875" cy="181" rx="7" ry="2.5" transform="rotate(43 875 181)" fill="#fff"/>
+          </g>
+          <path d="M843 222L858 225" stroke="#eef4ff" stroke-width="1.5" stroke-linecap="round" opacity=".75"/>
+          <path d="M844 222L859 225" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".22" filter="url(#headlight-soft)"/>
         </g>
       </svg>
     </div></div>
