@@ -35,7 +35,10 @@
 .intro-headlights{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .intro-headlight-emission{opacity:1;transition:opacity .22s ease-out}
 .intro-parked .intro-headlight-emission{opacity:0}
-@media(prefers-reduced-motion:reduce){.intro-headlight-emission{transition:none}}
+.intro-brake-emission{opacity:0;transition:opacity .12s ease-out}
+.intro-braking .intro-brake-emission{opacity:1}
+.intro-parked .intro-brake-emission{opacity:0}
+@media(prefers-reduced-motion:reduce){.intro-headlight-emission,.intro-brake-emission{transition:none}}
 
 .intro-stage,.intro-header,.intro-bottom{transition:opacity .35s ease}
 #pitlane-intro.intro-opening .top-door{transform:translateY(-101%)}
@@ -85,10 +88,21 @@
           <linearGradient id="headlight-air" x1="890" y1="195" x2="1530" y2="290" gradientUnits="userSpaceOnUse"><stop stop-color="#f5f8ff" stop-opacity=".08"/><stop offset=".3" stop-color="#f5f8ff" stop-opacity=".025"/><stop offset="1" stop-color="#f5f8ff" stop-opacity="0"/></linearGradient>
           <filter id="headlight-haze" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
           <filter id="headlight-soft" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.2"/></filter>
+          <radialGradient id="taillight-bloom"><stop stop-color="#ff2415" stop-opacity=".48"/><stop offset=".35" stop-color="#ff160b" stop-opacity=".14"/><stop offset="1" stop-color="#ff1008" stop-opacity="0"/></radialGradient>
+          <filter id="taillight-soft" x="-50%" y="-400%" width="200%" height="900%"><feGaussianBlur stdDeviation="3"/></filter>
           <clipPath id="headlight-lens"><path d="M842 153Q862 156 877 177L908 214Q887 205 871 185Q850 167 842 153Z"/></clipPath>
         </defs>
         <!-- Side view: only the near-side optic is visible. No invented second lamp. -->
         <g class="intro-headlight-emission">
+          <!-- Only the visible rear LED strip emits light; the lower red reflector stays unlit. -->
+          <ellipse cx="76" cy="162" rx="49" ry="19" fill="url(#taillight-bloom)"/>
+          <path d="M48 160Q72 163 105 164" fill="none" stroke="#ff2014" stroke-width="5" stroke-linecap="round" opacity=".65" filter="url(#taillight-soft)"/>
+          <path d="M48 160Q72 163 105 164" fill="none" stroke="#ff3a27" stroke-width="2.2" stroke-linecap="round"/>
+          <g class="intro-brake-emission">
+            <ellipse cx="76" cy="162" rx="60" ry="25" fill="url(#taillight-bloom)"/>
+            <path d="M48 160Q72 163 105 164" fill="none" stroke="#ff301b" stroke-width="7" stroke-linecap="round" filter="url(#taillight-soft)"/>
+            <path d="M48 160Q72 163 105 164" fill="none" stroke="#ff9c7b" stroke-width="2.4" stroke-linecap="round"/>
+          </g>
           <path d="M893 194Q1140 213 1570 251L1570 346Q1200 312 896 203Z" fill="url(#headlight-air)" filter="url(#headlight-haze)"/>
           <ellipse cx="1200" cy="339" rx="300" ry="16" fill="url(#headlight-ground)"/>
           <ellipse cx="879" cy="186" rx="38" ry="22" transform="rotate(42 879 186)" fill="url(#headlight-bloom)"/>
@@ -234,7 +248,9 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     const bayLeft = bayBounds.left + (bayBounds.width - bayWidth) / 2;
     const rearEdge = carBounds.left + carWidth * .15;
     const frontEdge = carBounds.left + carWidth * .853;
-    intro.classList.toggle('intro-parked', rearEdge >= bayLeft && frontEdge <= bayLeft + bayWidth);
+    const parked = rearEdge >= bayLeft && frontEdge <= bayLeft + bayWidth;
+    intro.classList.toggle('intro-parked', parked);
+    intro.classList.toggle('intro-braking', !parked && ease > .88 && ease > previousEase);
     const distance = ease * window.innerWidth * 1.1;
     const speed = dt > 0 ? Math.abs(ease - previousEase) * window.innerWidth * 1.1 * 1000 / dt : 0;
     wheels.forEach(wheel => {
