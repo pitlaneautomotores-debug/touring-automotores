@@ -21,7 +21,7 @@
 .intro-skip{color:#e2e2df;background:none;border:1px solid #454648;border-radius:30px;padding:12px 18px;font-size:11px;letter-spacing:.05em;cursor:pointer}
 .intro-skip:focus-visible{outline:2px solid white;outline-offset:5px}
 .intro-stage{position:absolute;top:50%;left:50%;width:min(76vw,820px);transform:translate(-50%,-50%)}
-.intro-wordmark{display:flex;justify-content:center;padding:0 8%;opacity:.8;transition:opacity .4s ease,filter .4s ease}.intro-parked .intro-wordmark{opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,.35)) drop-shadow(0 0 12px rgba(255,255,255,.16))}
+.intro-wordmark{display:flex;justify-content:center;padding:0 8%;opacity:.8;transition:opacity .4s ease,filter .4s ease}.intro-parked .intro-wordmark{opacity:1;filter:drop-shadow(0 0 4px rgba(255,255,255,.75)) drop-shadow(0 0 16px rgba(255,255,255,.4)) drop-shadow(0 0 32px rgba(255,255,255,.18))}
 .intro-wordmark .pitlane-logo{width:100%;height:auto;color:#f7f6f2}
 .intro-parking{position:relative;height:clamp(100px,19vw,180px);margin-top:35px;border-bottom:1px solid #303235}
 .intro-parking:after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid #686a6d;border-top:0;opacity:.6}
@@ -52,16 +52,19 @@
             <path d="M382 78Q444 65 478 76Q510 87 553 119L549 132L400 128Z"/>
             <path d="M510 77L527 83L634 134L614 131Z"/>
           </clipPath>
-          <filter id="glass-sign-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
+          <filter id="glass-sign-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
           <linearGradient id="glass-tint" x1="0" y1="65" x2="0" y2="135" gradientUnits="userSpaceOnUse"><stop stop-color="#121b22" stop-opacity=".94"/><stop offset=".6" stop-color="#080e13" stop-opacity=".92"/><stop offset="1" stop-color="#1d2831" stop-opacity=".88"/></linearGradient>
-          <linearGradient id="glass-light"><stop stop-color="#d6e6f2" stop-opacity="0"/><stop offset=".35" stop-color="#d6e6f2" stop-opacity=".05"/><stop offset=".52" stop-color="#eef6fc" stop-opacity=".36"/><stop offset=".65" stop-color="#bcd2e2" stop-opacity=".13"/><stop offset="1" stop-color="#d6e6f2" stop-opacity="0"/></linearGradient>
+          <linearGradient id="glass-light"><stop stop-color="#ffffff" stop-opacity="0"/><stop offset=".35" stop-color="#ffffff" stop-opacity=".05"/><stop offset=".52" stop-color="#ffffff" stop-opacity=".36"/><stop offset=".65" stop-color="#ffffff" stop-opacity=".13"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
         </defs>
         <g clip-path="url(#porsche-glazing)">
           <path d="M240 60H650V140H240Z" fill="url(#glass-tint)"/>
           <g class="intro-glass-reflection" transform="translate(650 0)">
             <path d="M-160 60H200L255 140H-105Z" fill="url(#glass-light)" opacity=".35"/>
-            <g class="intro-letter-glow" transform="translate(235 77) scale(-.7 .65)" color="#eaf4ff" opacity=".32" filter="url(#glass-sign-glow)"></g>
-            <g class="intro-letter-reflection" transform="translate(235 77) scale(-.7 .65)" color="#eaf4ff" opacity=".58"></g>
+            <g class="intro-light-beams" filter="url(#glass-sign-glow)">
+              <path d="M-115 48H-91L-25 152H-49Z" fill="#fff" opacity=".30"/>
+              <path d="M-28 48H16L82 152H38Z" fill="#fff" opacity=".23"/>
+              <path d="M85 48H102L168 152H151Z" fill="#fff" opacity=".32"/>
+            </g>
             <path d="M-133 60H-125L-70 140H-78Z" fill="#dceaf5" opacity=".10"/>
           </g>
           <path d="M250 120Q405 141 556 128" fill="none" stroke="#91aaba" stroke-opacity=".15" stroke-width="2"/>
@@ -148,12 +151,6 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   const parking = intro.querySelector('.intro-parking');
   const wheels = intro.querySelectorAll('.intro-wheel');
   const reflection = intro.querySelector('.intro-glass-reflection');
-  // Mirror the existing PITLANE lettering, as a luminous sign reflected in glass.
-  const sign = logo.querySelector('g');
-  if (sign) {
-    intro.querySelector('.intro-letter-reflection').append(sign.cloneNode(true));
-    intro.querySelector('.intro-letter-glow').append(sign.cloneNode(true));
-  }
   const meter = intro.querySelector('.intro-meter span');
   const rootOverflow = document.documentElement.style.overflow;
   const bodyOverflow = document.body.style.overflow;
@@ -216,7 +213,7 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     meter.style.transform = `scaleX(${progress})`;
     if (target === 1 && progress > .998) {
       frame = 0;
-      finishTimer = setTimeout(() => finish(), 850);
+      finishTimer = setTimeout(() => finish(), 1200);
     } else if (progress !== target) frame = requestAnimationFrame(draw);
     else { frame = 0; previousFrameTime = null; }
   }
