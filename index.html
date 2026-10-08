@@ -25,7 +25,9 @@
 .intro-parking:after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid #686a6d;border-top:0;opacity:.6;transition:border-color .4s ease,opacity .4s ease,filter .4s ease}
 
 
-.intro-parking:after{transition:border-color .35s ease,opacity .35s ease,filter .35s ease}
+.intro-parking:after{z-index:0;transition:border-color .35s ease,opacity .35s ease,filter .35s ease}
+.intro-car{z-index:2}
+
 .intro-parked .intro-parking:after{border-color:#c6cbd0;opacity:.88;filter:drop-shadow(0 0 3px rgba(230,238,248,.32))}
 .intro-door.top-door{top:0}.intro-door.bottom-door{bottom:0}
 .intro-header{position:absolute;top:32px;left:5vw;right:5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
