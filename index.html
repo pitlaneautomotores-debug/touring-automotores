@@ -45,6 +45,15 @@
 .intro-floor-reflection{filter:blur(.35px);transition:opacity .25s ease}
 .intro-parked .intro-floor-reflection{opacity:.64}
 .intro-parked .intro-car{filter:drop-shadow(0 14px 15px rgba(0,0,0,.7)) drop-shadow(0 0 13px rgba(240,246,255,.075))}
+
+/* Experimental studio lighting: restrained, progress-driven cinematic reveal */
+#pitlane-intro{--arrival:0;--park-glow:0}
+#pitlane-intro::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 46% 34% at 50% 64%,rgba(210,225,246,.11),transparent 75%),linear-gradient(108deg,transparent 30%,rgba(210,220,232,.035) 49%,transparent 65%);opacity:calc(.16 + var(--arrival)*.45);transition:opacity .16s ease}
+.intro-stage::before{content:'';position:absolute;left:50%;top:40%;width:80%;height:85%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(ellipse at 50% 75%,rgba(240,245,255,.095),transparent 58%);opacity:var(--park-glow);transition:opacity .35s ease}
+.intro-parking{transition:filter .3s ease;filter:drop-shadow(0 0 calc(var(--park-glow)*18px) rgba(220,232,255,.22))}
+.intro-parked .intro-wordmark{filter:drop-shadow(0 0 5px rgba(255,255,255,.66)) drop-shadow(0 0 20px rgba(255,255,255,.25))}
+@media(prefers-reduced-motion:reduce){#pitlane-intro::after,.intro-stage::before{display:none}}
+
 @media(max-width:600px){.intro-car::after{opacity:.2}}
 .intro-wheel-layer,.intro-glass-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .intro-caption{text-align:center;margin-top:28px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8e9297}
@@ -299,6 +308,8 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     const parked = rearEdge >= bayLeft && frontEdge <= bayLeft + bayWidth;
     intro.classList.toggle('intro-parked', parked);
     car.style.setProperty('--arrival', Math.max(0,Math.min(1,ease)).toFixed(4));
+    intro.style.setProperty('--arrival', Math.max(0,Math.min(1,ease)).toFixed(4));
+    intro.style.setProperty('--park-glow', parked ? '1' : '0');
     intro.classList.toggle('intro-braking', !parked && ease > .88 && ease > previousEase);
     const travel = Math.abs(travelPosition(0));
     const distance = ease * travel;
