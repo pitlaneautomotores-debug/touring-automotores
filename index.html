@@ -24,6 +24,13 @@
 .intro-parked .intro-parking:before{opacity:1}
 .intro-parking:after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid #686a6d;border-top:0;opacity:.6;transition:border-color .4s ease,opacity .4s ease,filter .4s ease}
 .intro-parked .intro-parking:after{border-color:#fff;opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,.85)) drop-shadow(0 0 10px rgba(255,255,255,.5)) drop-shadow(0 0 22px rgba(255,255,255,.25))}
+
+/* Wheel-synced bay lighting: front wheel triggers, rear wheel completes */
+.intro-parking{--bay-fill:0;--bay-settled:0}
+.intro-parking .intro-bay-light{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid #fff;border-top:0;box-sizing:border-box;pointer-events:none;z-index:3;clip-path:inset(0 0 0 calc((1 - var(--bay-fill))*100%));filter:drop-shadow(0 0 4px rgba(255,255,255,.95)) drop-shadow(0 0 12px rgba(210,232,255,.9)) drop-shadow(0 0 22px rgba(205,226,255,.65));opacity:calc(.35 + var(--bay-fill)*.65)}
+.intro-parking .intro-bay-light::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:6px;background:linear-gradient(90deg,transparent,rgba(228,241,255,.5),transparent);opacity:var(--bay-settled);filter:blur(5px)}
+.intro-parked .intro-parking:after{border-color:#686a6d;opacity:.6;filter:none}
+
 .intro-door.top-door{top:0}.intro-door.bottom-door{bottom:0}
 .intro-header{position:absolute;top:32px;left:5vw;right:5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
 .intro-skip{color:#e2e2df;background:none;border:1px solid #454648;border-radius:30px;padding:12px 18px;font-size:11px;letter-spacing:.05em;cursor:pointer}
@@ -233,6 +240,10 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   motionStreaks.className = 'intro-motion-streaks';
   motionStreaks.setAttribute('aria-hidden', 'true');
   parking.append(motionStreaks);
+  const bayLight = document.createElement('div');
+  bayLight.className = 'intro-bay-light';
+  bayLight.setAttribute('aria-hidden', 'true');
+  parking.append(bayLight);
   function travelPosition(progress) {
     return (progress - 1) * window.innerWidth * 1.1;
   }
@@ -316,6 +327,15 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     const rearEdge = carBounds.left + carWidth * .15;
     const frontEdge = carBounds.left + carWidth * .853;
     const parked = rearEdge >= bayLeft && frontEdge <= bayLeft + bayWidth;
+    // The front wheel reaches the bay first; the trailing rear wheel finishes the light.
+    const frontWheelX = carBounds.left + carWidth * .774;
+    const rearWheelX = carBounds.left + carWidth * .230;
+    const firstContact = bayLeft + bayWidth * .22;
+    const lastContact = bayLeft + bayWidth * .22;
+    const wheelTravel = Math.max(1, frontWheelX - rearWheelX);
+    const bayFill = Math.max(0,Math.min(1,(frontWheelX-firstContact)/wheelTravel));
+    parking.style.setProperty('--bay-fill', bayFill.toFixed(4));
+    parking.style.setProperty('--bay-settled', parked ? '1' : '0');
     intro.classList.toggle('intro-parked', parked);
     car.style.setProperty('--arrival', Math.max(0,Math.min(1,ease)).toFixed(4));
     intro.classList.toggle('intro-braking', !parked && ease > .88 && ease > previousEase);
