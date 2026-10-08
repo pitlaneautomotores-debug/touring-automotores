@@ -22,6 +22,8 @@
 .intro-floor-image{position:absolute;inset:0}
 .intro-parking:before{content:'';position:absolute;left:50%;top:100%;width:clamp(180px,36vw,380px);height:35px;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0,rgba(245,248,255,.18),rgba(245,248,255,.04) 42%,transparent 72%);opacity:0;transition:opacity .4s ease;pointer-events:none}
 .intro-parked .intro-parking:before{opacity:1}
+.intro-parking:after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid transparent;border-top:0;opacity:0;transition:border-color .4s ease,opacity .4s ease,filter .4s ease}
+.intro-parked .intro-parking:after{border-color:#fff;opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,.85)) drop-shadow(0 0 10px rgba(255,255,255,.5)) drop-shadow(0 0 22px rgba(255,255,255,.25))}
 .intro-door.top-door{top:0}.intro-door.bottom-door{bottom:0}
 .intro-header{position:absolute;top:32px;left:5vw;right:5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
 .intro-skip{color:#e2e2df;background:none;border:1px solid #454648;border-radius:30px;padding:12px 18px;font-size:11px;letter-spacing:.05em;cursor:pointer}
