@@ -46,15 +46,21 @@
 .intro-parked .intro-floor-reflection{opacity:.64}
 .intro-parked .intro-car{filter:drop-shadow(0 14px 15px rgba(0,0,0,.7)) drop-shadow(0 0 13px rgba(240,246,255,.075))}
 
-/* Experimental studio lighting: restrained, progress-driven cinematic reveal */
-#pitlane-intro{--arrival:0;--park-glow:0}
-#pitlane-intro::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 46% 34% at 50% 64%,rgba(210,225,246,.11),transparent 75%),linear-gradient(108deg,transparent 30%,rgba(210,220,232,.035) 49%,transparent 65%);opacity:calc(.16 + var(--arrival)*.45);transition:opacity .16s ease}
-.intro-stage::before{content:'';position:absolute;left:50%;top:40%;width:80%;height:85%;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(ellipse at 50% 75%,rgba(240,245,255,.095),transparent 58%);opacity:var(--park-glow);transition:opacity .35s ease}
-.intro-parking{transition:filter .3s ease;filter:drop-shadow(0 0 calc(var(--park-glow)*18px) rgba(220,232,255,.22))}
-.intro-parked .intro-wordmark{filter:drop-shadow(0 0 5px rgba(255,255,255,.66)) drop-shadow(0 0 20px rgba(255,255,255,.25))}
-@media(prefers-reduced-motion:reduce){#pitlane-intro::after,.intro-stage::before{display:none}}
-
 @media(max-width:600px){.intro-car::after{opacity:.2}}
+
+/* PITLANE motion study: dynamics, not another static lighting pass */
+#pitlane-intro{--velocity:0;--travel:0;--parked:0}
+.intro-stage{perspective:1100px}
+.intro-parking::before{z-index:0}
+.intro-car{z-index:2}
+.intro-parking .intro-motion-streaks{position:absolute;inset:12% 0 12%;z-index:1;pointer-events:none;overflow:hidden;opacity:calc(var(--velocity)*.56);transition:opacity .15s linear;mask-image:linear-gradient(90deg,transparent,black 25%,black 76%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,black 25%,black 76%,transparent)}
+.intro-motion-streaks::before,.intro-motion-streaks::after{content:'';position:absolute;left:4%;right:4%;height:1px;background:linear-gradient(90deg,transparent,rgba(220,230,245,.03) 8%,rgba(235,242,255,.42) 45%,transparent 95%);transform:translateX(calc(var(--travel)*-8%));filter:blur(.7px)}
+.intro-motion-streaks::before{top:54%}
+.intro-motion-streaks::after{top:75%;left:18%;right:15%;opacity:.45}
+.intro-wordmark .pitlane-logo{transform:translateY(calc((1 - var(--travel))*3px));transition:transform .2s ease}
+.intro-parking:after{box-shadow:0 0 calc(var(--parked)*11px) rgba(235,245,255,.2)}
+@media(prefers-reduced-motion:reduce){.intro-motion-streaks{display:none}}
+
 .intro-wheel-layer,.intro-glass-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .intro-caption{text-align:center;margin-top:28px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8e9297}
 .intro-bottom{position:absolute;bottom:max(35px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(78vw,320px);text-align:center}
@@ -223,6 +229,10 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   const skip = intro.querySelector('.intro-skip');
   const car = intro.querySelector('.intro-car');
   const parking = intro.querySelector('.intro-parking');
+  const motionStreaks = document.createElement('div');
+  motionStreaks.className = 'intro-motion-streaks';
+  motionStreaks.setAttribute('aria-hidden', 'true');
+  parking.append(motionStreaks);
   function travelPosition(progress) {
     return (progress - 1) * window.innerWidth * 1.1;
   }
@@ -308,12 +318,13 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     const parked = rearEdge >= bayLeft && frontEdge <= bayLeft + bayWidth;
     intro.classList.toggle('intro-parked', parked);
     car.style.setProperty('--arrival', Math.max(0,Math.min(1,ease)).toFixed(4));
-    intro.style.setProperty('--arrival', Math.max(0,Math.min(1,ease)).toFixed(4));
-    intro.style.setProperty('--park-glow', parked ? '1' : '0');
     intro.classList.toggle('intro-braking', !parked && ease > .88 && ease > previousEase);
     const travel = Math.abs(travelPosition(0));
     const distance = ease * travel;
     const speed = dt > 0 ? Math.abs(ease - previousEase) * travel * 1000 / dt : 0;
+    intro.style.setProperty('--velocity', Math.min(1, speed / 1900).toFixed(3));
+    intro.style.setProperty('--travel', ease.toFixed(4));
+    intro.style.setProperty('--parked', parked ? '1' : '0');
     wheels.forEach(wheel => {
       const radius = carWidth * Number(wheel.dataset.radius) / 1000;
       wheel.setAttribute('transform', `rotate(${distance / radius * 180 / Math.PI})`);
