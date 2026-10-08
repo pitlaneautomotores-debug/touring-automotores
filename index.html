@@ -25,10 +25,11 @@
 .intro-parking:after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid #686a6d;border-top:0;opacity:.6;transition:border-color .4s ease,opacity .4s ease,filter .4s ease}
 .intro-parked .intro-parking:after{border-color:#fff;opacity:1;filter:drop-shadow(0 0 3px rgba(255,255,255,.85)) drop-shadow(0 0 10px rgba(255,255,255,.5)) drop-shadow(0 0 22px rgba(255,255,255,.25))}
 
-/* Wheel-synced bay lighting: front wheel triggers, rear wheel completes */
+/* A single continuous parking trace, revealed as each wheel crosses the bay. */
 .intro-parking{--bay-fill:0;--bay-settled:0}
-.intro-parking .intro-bay-light{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;border:1px solid #fff;border-top:0;box-sizing:border-box;pointer-events:none;z-index:3;clip-path:inset(0 0 0 calc((1 - var(--bay-fill))*100%));filter:drop-shadow(0 0 4px rgba(255,255,255,.95)) drop-shadow(0 0 12px rgba(210,232,255,.9)) drop-shadow(0 0 22px rgba(205,226,255,.65));opacity:calc(.35 + var(--bay-fill)*.65)}
-.intro-parking .intro-bay-light::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:6px;background:linear-gradient(90deg,transparent,rgba(228,241,255,.5),transparent);opacity:var(--bay-settled);filter:blur(5px)}
+.intro-parking .intro-bay-light{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:max(32%,calc(clamp(180px,34vw,350px) * .74));height:12px;box-sizing:border-box;pointer-events:none;z-index:3;overflow:visible}
+.intro-bay-light .bay-track{position:absolute;inset:0;border:1px solid #e9f2ff;border-top:0;box-sizing:border-box;clip-path:inset(0 calc((1 - var(--bay-fill))*100%) 0 0);filter:drop-shadow(0 0 3px rgba(255,255,255,.8)) drop-shadow(0 0 9px rgba(200,226,255,.65));opacity:calc(.7 + var(--bay-settled)*.3)}
+.intro-bay-light .bay-pulse{position:absolute;bottom:-3px;left:0;width:100%;height:7px;background:linear-gradient(90deg,transparent,rgba(220,237,255,.6),transparent);filter:blur(5px);opacity:var(--bay-settled);transition:opacity .35s ease}
 .intro-parked .intro-parking:after{border-color:#686a6d;opacity:.6;filter:none}
 
 .intro-door.top-door{top:0}.intro-door.bottom-door{bottom:0}
@@ -243,6 +244,7 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
   const bayLight = document.createElement('div');
   bayLight.className = 'intro-bay-light';
   bayLight.setAttribute('aria-hidden', 'true');
+  bayLight.innerHTML = '<span class="bay-track"></span><span class="bay-pulse"></span>';
   parking.append(bayLight);
   function travelPosition(progress) {
     return (progress - 1) * window.innerWidth * 1.1;
@@ -327,15 +329,16 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     const rearEdge = carBounds.left + carWidth * .15;
     const frontEdge = carBounds.left + carWidth * .853;
     const parked = rearEdge >= bayLeft && frontEdge <= bayLeft + bayWidth;
-    // The front wheel reaches the bay first; the trailing rear wheel finishes the light.
+    // The marker follows the leading wheel; the trailing wheel completes it.
     const frontWheelX = carBounds.left + carWidth * .774;
     const rearWheelX = carBounds.left + carWidth * .230;
-    const firstContact = bayLeft + bayWidth * .22;
-    const lastContact = bayLeft + bayWidth * .22;
-    const wheelTravel = Math.max(1, frontWheelX - rearWheelX);
-    const bayFill = Math.max(0,Math.min(1,(frontWheelX-firstContact)/wheelTravel));
-    parking.style.setProperty('--bay-fill', bayFill.toFixed(4));
-    parking.style.setProperty('--bay-settled', parked ? '1' : '0');
+    const markerStart = bayLeft;
+    const markerEnd = bayLeft + bayWidth;
+    const leadingProgress = Math.max(0,Math.min(1,(frontWheelX-markerStart)/Math.max(1,markerEnd-markerStart)));
+    const trailingProgress = Math.max(0,Math.min(1,(rearWheelX-markerStart)/Math.max(1,markerEnd-markerStart)));
+    const bayFill = Math.max(0,Math.min(1,leadingProgress*.78 + trailingProgress*.22));
+    parking.style.setProperty('--bay-fill',bayFill.toFixed(4));
+    parking.style.setProperty('--bay-settled',parked ? '1' : '0');
     intro.classList.toggle('intro-parked', parked);
     car.style.setProperty('--arrival', Math.max(0,Math.min(1,ease)).toFixed(4));
     intro.classList.toggle('intro-braking', !parked && ease > .88 && ease > previousEase);
