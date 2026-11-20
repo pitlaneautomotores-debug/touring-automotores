@@ -45,26 +45,24 @@
 @media(max-width:600px){.segment-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.segment-tile{min-height:104px;padding:16px 14px}.catalog-heading{align-items:start;flex-direction:column;gap:8px;margin-top:40px}.rawrev-section{padding:70px 20px 58px}.rawrev-grid{gap:9px}.rawrev-card-copy{padding:14px 12px 17px}.rawrev-card-copy h3{font-size:13px}.rawrev-card-copy p{font-size:11px}.rawrev-topline{font-size:8px}.rawrev-foot{align-items:flex-start;flex-direction:column;margin-top:38px}}
 </style>
 <style>
-.segment-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:28px}
-.segment-photo{position:relative;display:block;min-height:190px;aspect-ratio:1.35/1;overflow:hidden;background:#151515;color:#fff;text-decoration:none}
-.segment-photo:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03) 20%,rgba(0,0,0,.68) 100%);z-index:1}
-.segment-photo img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform .5s ease,filter .5s ease;filter:saturate(.78)}
-.segment-photo:hover img{transform:scale(1.045);filter:saturate(1)}
-.segment-photo-copy{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;display:flex;align-items:end;justify-content:space-between;gap:10px}
-.segment-photo-copy strong{font-size:18px;font-weight:600;letter-spacing:-.02em}
-.segment-photo-copy span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-.segment-photo-copy b{font-size:20px;font-weight:400}
+.segment-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:0 0 30px}
+.segment-card{display:block;color:inherit;text-decoration:none}
+.segment-card .media{height:240px}
+.segment-card .info{padding:19px}
+.segment-card .info h3{font-size:25px}
+.segment-card .consult{margin-top:18px}
 .pitlane-stock{padding-top:62px}
-.pitlane-stock-head{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:24px}
+.pitlane-stock-head{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:28px}
 .pitlane-stock-head h2{font-size:38px;letter-spacing:-.055em;font-weight:500;margin:0}
 .pitlane-stock-head .eyebrow{margin-bottom:8px}
-.pitlane-stock .filters{display:block;margin-bottom:24px}
-.pitlane-stock .stock-search{display:block;max-width:390px;width:100%;padding:13px 18px}
+.pitlane-search-wrap{margin:8px 0 26px}
+.pitlane-search-wrap .stock-search{display:block;max-width:390px;width:100%;padding:13px 18px}
+
 .rawrev-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .rawrev-card img{aspect-ratio:16/9}
 .rawrev-card-copy{padding:20px 22px 23px}
 @media(max-width:900px){.segment-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.rawrev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.segment-gallery{gap:9px}.segment-photo{min-height:135px;aspect-ratio:1.1/1}.segment-photo-copy{left:12px;right:12px;bottom:12px}.segment-photo-copy strong{font-size:14px}.segment-photo-copy span{font-size:8px}.pitlane-stock{padding-top:42px}.pitlane-stock-head h2{font-size:32px}.pitlane-stock .stock-search{max-width:none}.rawrev-grid{grid-template-columns:1fr;gap:14px}.rawrev-card img{aspect-ratio:16/9}}
+@media(max-width:600px){.segment-gallery{gap:12px}.segment-card .media{height:155px}.segment-card .info{padding:14px}.segment-card .info h3{font-size:18px}.pitlane-stock{padding-top:42px}.pitlane-stock-head h2{font-size:32px}.pitlane-search-wrap .stock-search{max-width:none}.rawrev-grid{grid-template-columns:1fr;gap:14px}.rawrev-card img{aspect-ratio:16/9}}
 </style></head>
 <body>
 <style>
@@ -229,22 +227,19 @@
     <article class="feature-card feature-sell"><div><h3>Contanos qué auto querés vender</h3><p>Evaluamos la unidad y gestionamos la venta de punta a punta.</p><button type="button" data-feature-tab="vender">Quiero vender mi auto →</button></div></article>
     <article class="feature-card feature-swap"><div><h3>¿Querés cambiar tu auto?</h3><p>Analizamos tu usado y la operación completa.</p><button type="button" data-feature-tab="permutar">Quiero permutar →</button></div></article>
   </section>
-  <section class="section" id="pitlane-categorias">
-    <div class="head segment-intro"><div><div class="eyebrow">PITLANE AUTOMOTORES</div><h2>Encontrá tu próximo vehículo.</h2></div><p>Explorá nuestra selección por tipo de vehículo.</p></div>
-    <div class="segment-gallery" aria-label="Categorías de vehículos">
-      <a class="segment-photo" href="#stock" data-segment="Utilitario"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85" alt="Vehículo utilitario"><div class="segment-photo-copy"><div><span>01 / Trabajo</span><br><strong>Utilitarios</strong></div><b>↗</b></div></a>
-      <a class="segment-photo" href="#stock" data-segment="Hatchback"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85" alt="Automóvil hatchback"><div class="segment-photo-copy"><div><span>02 / Ciudad</span><br><strong>Hatchback</strong></div><b>↗</b></div></a>
-      <a class="segment-photo" href="#stock" data-segment="Sedán"><img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85" alt="Automóvil sedán"><div class="segment-photo-copy"><div><span>03 / Confort</span><br><strong>Sedán</strong></div><b>↗</b></div></a>
-      <a class="segment-photo" href="#stock" data-segment="SUV"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85" alt="Vehículo SUV"><div class="segment-photo-copy"><div><span>04 / Versatilidad</span><br><strong>SUV</strong></div><b>↗</b></div></a>
-      <a class="segment-photo" href="#stock" data-segment="Pick-up"><img src="https://images.unsplash.com/photo-1605893477799-b99e3b8b93fe?auto=format&fit=crop&w=900&q=85" alt="Camioneta pickup"><div class="segment-photo-copy"><div><span>05 / Fuerza</span><br><strong>Pickup</strong></div><b>↗</b></div></a>
-      <a class="segment-photo" href="#stock" data-segment="Minivan"><img src="https://images.unsplash.com/photo-1566933293069-b55c7f326dd4?auto=format&fit=crop&w=900&q=85" alt="Vehículo familiar espacioso"><div class="segment-photo-copy"><div><span>06 / Espacio</span><br><strong>Minivan</strong></div><b>↗</b></div></a>
-      <a class="segment-photo" href="#stock" data-segment="Full-size"><img src="https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=900&q=85" alt="Vehículo full size"><div class="segment-photo-copy"><div><span>07 / Gran formato</span><br><strong>Full-size</strong></div><b>↗</b></div></a>
-      <a class="segment-photo" href="#stock" data-segment="Coupé"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85" alt="Automóvil coupé"><div class="segment-photo-copy"><div><span>08 / Diseño</span><br><strong>Coupé y otros</strong></div><b>↗</b></div></a>
-    </div>
-  </section>
   <section class="section pitlane-stock" id="stock">
     <div class="pitlane-stock-head"><div><div class="eyebrow">AUTOMOTORES</div><h2>PITLANE</h2></div></div>
-    <div class="filters"><label class="stock-search"><span class="sr-only">Buscar vehículo</span><input id="stock-q" placeholder="Buscar vehículo"></label></div>
+    <div class="segment-gallery" aria-label="Categorías de vehículos">
+      <a class="card segment-card" href="#stock-q" data-segment="Utilitario"><div class="media"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85" alt="Vehículos utilitarios"></div><div class="info"><div class="row"><div><small>01 / TRABAJO</small><h3>Utilitarios</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+      <a class="card segment-card" href="#stock-q" data-segment="Hatchback"><div class="media"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=85" alt="Vehículos hatchback"></div><div class="info"><div class="row"><div><small>02 / CIUDAD</small><h3>Hatchback</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+      <a class="card segment-card" href="#stock-q" data-segment="Sedán"><div class="media"><img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=85" alt="Vehículos sedán"></div><div class="info"><div class="row"><div><small>03 / CONFORT</small><h3>Sedán</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+      <a class="card segment-card" href="#stock-q" data-segment="SUV"><div class="media"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=85" alt="Vehículos SUV"></div><div class="info"><div class="row"><div><small>04 / VERSATILIDAD</small><h3>SUV</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+      <a class="card segment-card" href="#stock-q" data-segment="Pick-up"><div class="media"><img src="https://images.unsplash.com/photo-1605893477799-b99e3b8b93fe?auto=format&fit=crop&w=900&q=85" alt="Vehículos pickup"></div><div class="info"><div class="row"><div><small>05 / FUERZA</small><h3>Pickup</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+      <a class="card segment-card" href="#stock-q" data-segment="Minivan"><div class="media"><img src="https://images.unsplash.com/photo-1566933293069-b55c7f326dd4?auto=format&fit=crop&w=900&q=85" alt="Vehículos minivan"></div><div class="info"><div class="row"><div><small>06 / ESPACIO</small><h3>Minivan</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+      <a class="card segment-card" href="#stock-q" data-segment="Full-size"><div class="media"><img src="https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=900&q=85" alt="Vehículos full-size"></div><div class="info"><div class="row"><div><small>07 / GRAN FORMATO</small><h3>Full-size</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+      <a class="card segment-card" href="#stock-q" data-segment="Coupé"><div class="media"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85" alt="Vehículos coupé"></div><div class="info"><div class="row"><div><small>08 / DISEÑO</small><h3>Coupé y otros</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
+    </div>
+    <div class="pitlane-search-wrap"><label class="stock-search"><span class="sr-only">Buscar vehículo</span><input id="stock-q" placeholder="Buscar vehículo"></label></div>
     <div class="grid" id="vehicle-grid"></div><div class="empty hidden" id="empty">No encontramos unidades en este segmento. Consultanos por WhatsApp para conocer las opciones disponibles.</div>
   </section>
   <section class="rawrev-section" id="rawrev">
@@ -295,7 +290,7 @@ document.querySelectorAll('.lead-form').forEach(f=>f.addEventListener('submit',e
 let category='Todos',query='';
 const segmentCategories={'Utilitario':['Utilitario','Utilitarios'], 'Hatchback':['Hatchback'], 'Sedán':['Sedán','Sedan'], 'SUV':['SUV'], 'Pick-up':['Pick-up','Pickup'], 'Minivan':['Minivan'], 'Full-size':['Full-size','Full size'], 'Coupé':['Coupé','Coupe']};
 function render(){const q=query.trim().toLowerCase();const list=vehicles.filter(v=>(category==='Todos'||(segmentCategories[category]||[category]).includes(v.category))&&(!q||`${v.brand} ${v.model} ${v.version} ${v.year}`.toLowerCase().includes(q)));const grid=document.getElementById('vehicle-grid');grid.innerHTML=list.map(v=>`<a class="card" href="vehiculo.html?id=${encodeURIComponent(v.id)}" aria-label="Ver ficha completa de ${v.brand} ${v.model} ${v.version}"><div class="media"><img src="${v.image}" alt="${v.brand} ${v.model}"><span class="badge">${v.id}</span></div><div class="info"><div class="row"><div><small>${v.brand}</small><h3>${v.model}</h3></div><strong>${v.price}</strong></div><p>${v.version}</p><div class="meta"><span>${v.year}</span><span>${v.km}</span><span>${v.category}</span><span>1 disponible</span></div><div class="consult"><span>Ver ficha completa</span><span>→</span></div></div></a>`).join('');document.getElementById('empty').classList.toggle('hidden',list.length>0)}
-document.querySelectorAll('[data-segment]').forEach(a=>a.addEventListener('click',()=>{category=a.dataset.segment;document.getElementById('stock-q').value='';query='';render()}));
+document.querySelectorAll('[data-segment]').forEach(a=>a.addEventListener('click',()=>{category=a.dataset.segment;document.getElementById('stock-q').value='';query='';render();document.getElementById('stock-q').scrollIntoView({behavior:'smooth',block:'center'})}));
 document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.value;category='Todos';render()});document.getElementById('hero-search').addEventListener('submit',e=>{e.preventDefault();query=document.getElementById('hero-q').value;category='Todos';document.getElementById('stock-q').value=query;render();document.getElementById('stock').scrollIntoView({behavior:'smooth'})});render();
 </script>
 <script>
