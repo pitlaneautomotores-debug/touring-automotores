@@ -63,7 +63,37 @@
 .rawrev-card-copy{padding:20px 22px 23px}
 @media(max-width:900px){.segment-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.rawrev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.segment-gallery{gap:12px}.segment-card .media{height:155px}.segment-card .info{padding:14px}.segment-card .info h3{font-size:18px}.pitlane-stock{padding-top:42px}.pitlane-stock-head h2{font-size:32px}.pitlane-search-wrap .stock-search{max-width:none}.rawrev-grid{grid-template-columns:1fr;gap:14px}.rawrev-card img{aspect-ratio:16/9}}
-</style></head>
+</style><style>
+/* Catálogo Pitlane */
+.catalog-start{margin:44px 0 18px;padding-top:27px;border-top:1px solid #e7e7e4}
+.catalog-start .eyebrow{font-size:10px;letter-spacing:.2em;font-weight:700;margin-bottom:9px}
+.catalog-start h2{font-size:clamp(25px,3vw,34px);line-height:1.05;letter-spacing:-.045em;font-weight:600;margin:0;color:#171717}
+.pitlane-search-wrap{margin:0 0 28px!important}
+
+/* Rawrev Motors — división premium */
+.rawrev-section{background:#08090b!important;color:#f1f0ec!important;padding:112px max(5vw,24px) 88px!important;font-family:inherit!important}
+.rawrev-section:before{background:radial-gradient(ellipse at 50% 4%,rgba(176,150,112,.19),transparent 46%),linear-gradient(120deg,rgba(255,255,255,.025),transparent 42%,rgba(151,167,178,.045))!important}
+.rawrev-inner{max-width:1320px!important}
+.rawrev-topline{font-family:inherit!important;color:#b8a98f!important;font-size:10px!important;letter-spacing:.19em!important;border-bottom:1px solid rgba(190,174,147,.28);padding-bottom:17px}
+.rawrev-wordmark{font-family:inherit!important;font-size:clamp(48px,8vw,100px)!important;line-height:.88!important;letter-spacing:.075em!important;font-weight:600!important;margin:45px 0 5px!important;color:#f4f2ed!important}
+.rawrev-submark{display:inline-block;font-family:inherit!important;font-size:12px!important;letter-spacing:.58em!important;color:#c0aa86!important;margin:0 0 0 7px!important}
+.rawrev-lead{font-family:inherit!important;max-width:620px!important;color:#b7b5af!important;font-size:16px!important;line-height:1.75!important;margin:26px 0 48px!important}
+.rawrev-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
+.rawrev-card{position:relative!important;min-height:310px!important;overflow:hidden!important;border:1px solid rgba(198,180,149,.24)!important;border-radius:3px!important;background:#111315!important;isolation:isolate;transition:border-color .3s,transform .3s!important}
+.rawrev-card:hover{border-color:rgba(210,185,145,.72)!important;transform:translateY(-4px)!important}
+.rawrev-card:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,6,7,.02) 18%,rgba(5,6,7,.18) 48%,rgba(5,6,7,.92) 100%);pointer-events:none}
+.rawrev-card img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:cover!important;filter:brightness(.74) saturate(.78)!important;transition:transform .7s ease,filter .4s ease!important;z-index:0}
+.rawrev-card:hover img{transform:scale(1.045)!important;filter:brightness(.86) saturate(.92)!important}
+.rawrev-card-copy{position:absolute!important;z-index:2!important;left:0;right:0;bottom:0;padding:28px 30px 27px!important}
+.rawrev-card-copy span{font-family:inherit!important;color:#d0b991!important;font-size:9px!important;letter-spacing:.22em!important;margin-bottom:12px!important}
+.rawrev-card-copy h3{font-family:inherit!important;font-size:clamp(21px,2.4vw,29px)!important;letter-spacing:.09em!important;font-weight:600!important;margin:0 0 8px!important;color:#f5f3ef!important}
+.rawrev-card-copy p{font-family:inherit!important;font-size:13px!important;line-height:1.6!important;color:#d0cec8!important;margin:0!important;max-width:400px}
+.rawrev-foot{border-top:1px solid rgba(190,174,147,.28)!important;margin-top:42px!important;padding-top:21px!important;color:#a9a59c!important;font-family:inherit!important}
+.rawrev-foot a{color:#d4bd98!important;letter-spacing:.12em!important;transition:color .2s}
+.rawrev-foot a:hover{color:#fff!important}
+@media(max-width:760px){.rawrev-section{padding:78px 20px 62px!important}.rawrev-grid{grid-template-columns:1fr!important;gap:13px!important}.rawrev-card{min-height:260px!important}.rawrev-card-copy{padding:22px!important}.rawrev-lead{font-size:14px!important;margin-bottom:34px!important}.rawrev-topline{font-size:8px!important;letter-spacing:.12em!important}.catalog-start{margin-top:34px}}
+</style>
+</head>
 <body>
 <style>
 #pitlane-intro[hidden]{display:none!important}
@@ -239,6 +269,7 @@
       <a class="card segment-card" href="#stock-q" data-segment="Full-size"><div class="media"><img src="https://images.unsplash.com/photo-1551830820-330a71b99659?auto=format&fit=crop&w=900&q=85" alt="Vehículos full-size"></div><div class="info"><div class="row"><div><small>07 / GRAN FORMATO</small><h3>Full-size</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
       <a class="card segment-card" href="#stock-q" data-segment="Coupé"><div class="media"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85" alt="Vehículos coupé"></div><div class="info"><div class="row"><div><small>08 / DISEÑO</small><h3>Coupé y otros</h3></div></div><div class="consult"><span>Ver categoría</span><span>→</span></div></div></a>
     </div>
+    <div class="catalog-start"><div class="eyebrow">PITLANE</div><h2>Catálogo completo</h2></div>
     <div class="pitlane-search-wrap"><label class="stock-search"><span class="sr-only">Buscar vehículo</span><input id="stock-q" placeholder="Buscar vehículo"></label></div>
     <div class="grid" id="vehicle-grid"></div><div class="empty hidden" id="empty">No encontramos unidades en este segmento. Consultanos por WhatsApp para conocer las opciones disponibles.</div>
   </section>
