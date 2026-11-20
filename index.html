@@ -168,6 +168,40 @@ document.addEventListener('DOMContentLoaded',function(){
  .segment-card:hover,#vehicle-grid .card:hover,.rawrev-card:hover{animation:none!important;transform:scale(.985)!important}
 }
 </style>
+<style>
+/* Rawrev: tarjetas panorámicas como las fichas de inventario */
+.rawrev-section{background:#08090b!important;color:#f4f4f2!important}
+.rawrev-section:before{background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.055),transparent 56%)!important}
+.rawrev-topline{color:rgba(255,255,255,.58)!important;border-color:rgba(255,255,255,.15)!important}
+.rawrev-wordmark{color:#fff!important}
+.rawrev-submark{color:#d7d7d7!important}
+.rawrev-lead{color:rgba(255,255,255,.68)!important}
+.rawrev-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important}
+.rawrev-card{display:flex!important;flex-direction:column!important;min-width:0!important;background:#111214!important;border:1px solid rgba(255,255,255,.14)!important;overflow:hidden}
+.rawrev-card img{display:block!important;width:100%!important;aspect-ratio:16/9!important;object-fit:cover!important;filter:brightness(.82) saturate(.78)!important;transition:filter .35s ease!important}
+.rawrev-card:hover img{filter:brightness(.96) saturate(.94)!important}
+.rawrev-card-copy{padding:19px 20px 22px!important}
+.rawrev-card-copy span{color:rgba(255,255,255,.52)!important}
+.rawrev-card-copy h3{color:#fff!important}
+.rawrev-card-copy p{color:rgba(255,255,255,.68)!important}
+.rawrev-card:hover{border-color:rgba(255,255,255,.45)!important;transform:none!important}
+.rawrev-foot{border-color:rgba(255,255,255,.16)!important;color:rgba(255,255,255,.5)!important}
+.rawrev-foot a{color:#fff!important}
+@media(max-width:700px){.rawrev-grid{grid-template-columns:1fr!important;gap:14px!important}.rawrev-card img{aspect-ratio:16/9!important}}
+/* El mismo efecto de profundidad pulsante en categorías, catálogo y Rawrev */
+@keyframes cardDepthPulse{
+  0%,100%{box-shadow:0 2px 5px rgba(0,0,0,.12),inset 0 1px 1px rgba(255,255,255,.035);transform:scale(1)}
+  50%{box-shadow:0 9px 24px rgba(0,0,0,.24),inset 0 2px 5px rgba(0,0,0,.12);transform:scale(.988)}
+}
+.segment-card:hover,#vehicle-grid .card:hover,.rawrev-card:hover{
+  animation:cardDepthPulse 1.7s ease-in-out infinite!important;
+  transform:none;
+  z-index:3;
+}
+@media(prefers-reduced-motion:reduce){
+ .segment-card:hover,#vehicle-grid .card:hover,.rawrev-card:hover{animation:none!important;transform:none!important}
+}
+</style>
 </head>
 <body>
 <style>
@@ -354,10 +388,10 @@ document.addEventListener('DOMContentLoaded',function(){
       <div class="rawrev-wordmark">RAWREV</div><div class="rawrev-submark">MOTORS</div>
       <p class="rawrev-lead">Vehículos extraordinarios. Una selección que prioriza diseño, ingeniería, carácter y exclusividad.</p>
       <div class="rawrev-grid">
-        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Performance." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1000&q=85" alt="Deportivo Porsche en estudio"><div class="rawrev-card-copy"><span>01 / DYNAMIC</span><h3>PERFORMANCE</h3><p>Deportivos y versiones de altas prestaciones.</p></div></a>
-        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Luxury." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1000&q=85" alt="Automóvil de lujo"><div class="rawrev-card-copy"><span>02 / REFINED</span><h3>LUXURY</h3><p>Lujo, confort y sofisticación.</p></div></a>
-        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Collection." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=85" alt="Automóvil clásico de colección"><div class="rawrev-card-copy"><span>03 / HERITAGE</span><h3>COLLECTION</h3><p>Clásicos y unidades con valor especial.</p></div></a>
-        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Selected." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1000&q=85" alt="BMW seleccionado"><div class="rawrev-card-copy"><span>04 / CURATED</span><h3>SELECTED</h3><p>Unidades elegidas por configuración, estado y procedencia.</p></div></a>
+        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Performance." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1755594532604-79e76ffeccea?auto=format&fit=crop&w=1600&q=88" alt="Porsche 911 GT3 negro fotografiado en una calle mojada"><div class="rawrev-card-copy"><span>01 / DYNAMIC</span><h3>PERFORMANCE</h3><p>Deportivos y versiones de altas prestaciones.</p></div></a>
+        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Luxury." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1617814065893-00757125efab?auto=format&fit=crop&w=1600&q=88" alt="Mercedes-AMG GT negro fotografiado en Mónaco"><div class="rawrev-card-copy"><span>02 / REFINED</span><h3>LUXURY</h3><p>Lujo, confort y sofisticación.</p></div></a>
+        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Collection." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1741960075291-ff60bc934b2a?auto=format&fit=crop&w=1600&q=88" alt="Porsche 911 clásico fotografiado en exterior"><div class="rawrev-card-copy"><span>03 / HERITAGE</span><h3>COLLECTION</h3><p>Clásicos y unidades con valor especial.</p></div></a>
+        <a class="rawrev-card" href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20consultar%20por%20Selected." target="_blank" rel="noopener"><img src="https://images.unsplash.com/photo-1616591938203-9b5630a01006?auto=format&fit=crop&w=1600&q=88" alt="BMW M4 negro fotografiado en showroom"><div class="rawrev-card-copy"><span>04 / CURATED</span><h3>SELECTED</h3><p>Unidades elegidas por configuración, estado y procedencia.</p></div></a>
       </div>
       <div class="rawrev-foot"><span>RAWREV MOTORS · A PITLANE COMPANY</span><a href="https://wa.me/5493816158785?text=Hola%20RAWREV%20MOTORS%2C%20quiero%20una%20consulta%20privada." target="_blank" rel="noopener">Consultas privadas ↗</a></div>
     </div>
