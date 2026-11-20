@@ -210,6 +210,41 @@ document.addEventListener('DOMContentLoaded',function(){
 .pitlane-logo{pointer-events:none}
 .brand{user-select:none}
 </style>
+
+<style>
+/* Hero cinematográfico PITLANE — conserva el wordmark gráfico original */
+.hero-cinematic{min-height:min(790px,calc(100svh - 108px));padding:0 5vw 28px!important;display:flex;align-items:stretch;position:relative;isolation:isolate;background-image:linear-gradient(90deg,rgba(4,5,6,.72),rgba(4,5,6,.18) 55%,rgba(4,5,6,.48)),linear-gradient(0deg,rgba(4,5,6,.78),transparent 42%,rgba(4,5,6,.22)),url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2400&q=92")!important;background-position:center 54%!important;background-size:cover!important}
+.hero-cinematic:after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 40%,transparent 12%,rgba(0,0,0,.25) 100%);pointer-events:none}
+.hero-cinematic .hero-inner{width:100%;max-width:1440px;min-height:inherit;display:flex;flex-direction:column;justify-content:space-between;padding:68px 0 0}
+.hero-cinematic .hero-copy{max-width:none;margin:0;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px 0 36px}
+.hero-cinematic .hero-kicker{font-size:10px;font-weight:600;letter-spacing:.28em;color:rgba(255,255,255,.78);margin-bottom:30px}
+.hero-cinematic .hero-pitlane-mark{display:block;width:min(68vw,760px);height:auto;color:#fff;filter:drop-shadow(0 4px 24px rgba(0,0,0,.32))}
+.hero-cinematic .hero-sub{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.82);margin:26px 0 0}
+.hero-search-panel{width:min(850px,100%);margin:0 auto}
+.hero-cinematic .panel{border-radius:3px;box-shadow:0 22px 70px rgba(0,0,0,.28);background:rgba(250,250,248,.97)}
+.hero-cinematic .content{padding:22px 28px}
+.hero-cinematic .content h2{font-size:24px}
+.hero-cinematic .content p{margin:5px 0 0;font-size:13px}
+.hero-cinematic .tabs button{padding:15px 12px}
+.hero-cinematic .search{margin-top:14px}
+.hero-cinematic .micro{margin-top:12px}
+.hero-bottomline{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-top:22px;color:rgba(255,255,255,.62);font-size:9px;letter-spacing:.2em}
+.hero-bottomline a{color:#fff;font-weight:600;letter-spacing:.16em}
+@media(max-width:700px){
+ .hero-cinematic{min-height:calc(100svh - 100px);padding:0 18px 20px!important;background-position:57% center!important}
+ .hero-cinematic .hero-inner{padding-top:38px}
+ .hero-cinematic .hero-copy{padding:20px 0 28px}
+ .hero-cinematic .hero-kicker{font-size:8px;letter-spacing:.18em;margin-bottom:24px}
+ .hero-cinematic .hero-pitlane-mark{width:min(86vw,560px)}
+ .hero-cinematic .hero-sub{font-size:9px;letter-spacing:.12em;margin-top:20px}
+ .hero-cinematic .content{padding:17px 14px}
+ .hero-cinematic .content h2{font-size:21px}
+ .hero-cinematic .tabs button{font-size:12px;padding:14px 8px}
+ .hero-bottomline{font-size:7px;letter-spacing:.12em;padding-top:17px}
+}
+@media(prefers-reduced-motion:reduce){.hero-cinematic *{scroll-behavior:auto}}
+</style>
+
 </head>
 <body>
 <style>
@@ -364,7 +399,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="links"><a href="#stock">Comprar</a><a href="#operar" data-intent="vender">Vender</a><a href="#operar" data-intent="permutar">Permutar</a><a href="#como-funciona">Cómo funciona</a><a href="#contacto">Contacto</a></div>
     <a class="wa js-wa" data-msg="Hola PITLANE, quiero hacer una consulta." target="_blank">WhatsApp</a>
   </nav>
-  <section class="hero" id="inicio"><div class="hero-inner"><div class="hero-copy"><div class="eyebrow">PITLANE</div><h1>Comprar, vender o cambiar tu auto. <em>En un solo lugar.</em></h1><p class="hero-sub">Vehículos seleccionados y gestión personalizada de punta a punta.</p></div><div class="panel" id="operar"><div class="tabs"><button class="active" data-tab="comprar">Comprar</button><button data-tab="vender">Vender</button><button data-tab="permutar">Permutar</button></div><div class="content tab-content" data-content="comprar"><h2>Encontrá tu próximo auto</h2><p>Buscá por marca, modelo o versión.</p><form class="search" id="hero-search"><label class="sr-only" for="hero-q">Marca, modelo o versión</label><input id="hero-q" placeholder="Ej. Amarok V6, Taos, BMW..."><button class="primary">Buscar</button></form><div class="micro"><a href="#stock">Ver todos los vehículos →</a><a href="#busqueda">No encuentro el que busco →</a></div></div><form class="content tab-content hidden lead-form" data-content="vender" data-kind="vender"><h2>Contanos qué auto querés vender</h2><p>Te contactamos para evaluar la unidad y definir la mejor estrategia de venta.</p><div class="form-grid"><label class="sr-only" for="sell-vehicle">Marca y modelo</label><input id="sell-vehicle" name="Vehículo" required placeholder="Marca y modelo"><label class="sr-only" for="sell-year">Año</label><input id="sell-year" name="Año" required placeholder="Año"><label class="sr-only" for="sell-km">Kilómetros</label><input id="sell-km" name="Kilómetros" required placeholder="Kilómetros"><label class="sr-only" for="sell-name">Tu nombre</label><input id="sell-name" name="Nombre" required placeholder="Tu nombre"></div><button class="primary" style="width:100%">Quiero vender mi auto →</button></form><form class="content tab-content hidden lead-form" data-content="permutar" data-kind="permutar"><h2>¿Querés cambiar tu auto?</h2><p>Decinos qué tenés y qué estás buscando. Evaluamos la operación completa.</p><div class="form-grid"><label class="sr-only" for="swap-offer">Auto que entregás</label><input id="swap-offer" name="Entrego" required placeholder="Auto que entregás"><label class="sr-only" for="swap-search">Auto que buscás</label><input id="swap-search" name="Busco" required placeholder="Auto que buscás"><label class="sr-only" for="swap-difference">Diferencia aproximada</label><input id="swap-difference" name="Diferencia" placeholder="Diferencia aproximada"><label class="sr-only" for="swap-name">Tu nombre</label><input id="swap-name" name="Nombre" required placeholder="Tu nombre"></div><button class="primary" style="width:100%">Evaluar mi permuta →</button></form></div></div></section>
+  <section class="hero hero-cinematic" id="inicio"><div class="hero-inner"><div class="hero-copy"><div class="hero-kicker">AUTOMOTIVE · YERBA BUENA, TUCUMÁN</div><svg class="hero-pitlane-mark" viewBox="0 0 520 64" role="img" aria-label="PITLANE"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12 V54 M10 12 H54 Q68 12 68 25 Q68 38 54 38 H10"/><path d="M96 12 V54"/><path d="M125 12 H177 M151 12 V54"/><path d="M205 12 V54 H246"/><path d="M275 54 L302 12 L329 54"/><path d="M358 54 V12 L402 54 V12"/><path d="M438 12 V54 M438 12 H490 M438 33 H482 M438 54 H490"/></g></svg><p class="hero-sub">Selección de vehículos. Otra forma de operar.</p></div><div class="hero-search-panel"><div class="panel" id="operar"><div class="tabs"><button class="active" data-tab="comprar">Comprar</button><button data-tab="vender">Vender</button><button data-tab="permutar">Permutar</button></div><div class="content tab-content" data-content="comprar"><h2>Encontrá tu próximo auto</h2><p>Buscá por marca, modelo o versión.</p><form class="search" id="hero-search"><label class="sr-only" for="hero-q">Marca, modelo o versión</label><input id="hero-q" placeholder="Ej. Amarok V6, Taos, BMW..."><button class="primary">Buscar</button></form><div class="micro"><a href="#stock">Ver todos los vehículos →</a><a href="#busqueda">No encuentro el que busco →</a></div></div><form class="content tab-content hidden lead-form" data-content="vender" data-kind="vender"><h2>Contanos qué auto querés vender</h2><p>Te contactamos para evaluar la unidad y definir la mejor estrategia de venta.</p><div class="form-grid"><label class="sr-only" for="sell-vehicle">Marca y modelo</label><input id="sell-vehicle" name="Vehículo" required placeholder="Marca y modelo"><label class="sr-only" for="sell-year">Año</label><input id="sell-year" name="Año" required placeholder="Año"><label class="sr-only" for="sell-km">Kilómetros</label><input id="sell-km" name="Kilómetros" required placeholder="Kilómetros"><label class="sr-only" for="sell-name">Tu nombre</label><input id="sell-name" name="Nombre" required placeholder="Tu nombre"></div><button class="primary" style="width:100%">Quiero vender mi auto →</button></form><form class="content tab-content hidden lead-form" data-content="permutar" data-kind="permutar"><h2>¿Querés cambiar tu auto?</h2><p>Decinos qué tenés y qué estás buscando. Evaluamos la operación completa.</p><div class="form-grid"><label class="sr-only" for="swap-offer">Auto que entregás</label><input id="swap-offer" name="Entrego" required placeholder="Auto que entregás"><label class="sr-only" for="swap-search">Auto que buscás</label><input id="swap-search" name="Busco" required placeholder="Auto que buscás"><label class="sr-only" for="swap-difference">Diferencia aproximada</label><input id="swap-difference" name="Diferencia" placeholder="Diferencia aproximada"><label class="sr-only" for="swap-name">Tu nombre</label><input id="swap-name" name="Nombre" required placeholder="Tu nombre"></div><button class="primary" style="width:100%">Evaluar mi permuta →</button></form></div></div><div class="hero-bottomline"><span>SELECCIÓN · INTERMEDIACIÓN · CONSIGNACIÓN</span><a href="#stock">EXPLORAR VEHÍCULOS ↓</a></div></div></section>
   <section class="feature-strip" aria-label="Operaciones Pitlane">
     <article class="feature-card feature-sell"><div><h3>Contanos qué auto querés vender</h3><p>Evaluamos la unidad y gestionamos la venta de punta a punta.</p><button type="button" data-feature-tab="vender">Quiero vender mi auto →</button></div></article>
     <article class="feature-card feature-swap"><div><h3>¿Querés cambiar tu auto?</h3><p>Analizamos tu usado y la operación completa.</p><button type="button" data-feature-tab="permutar">Quiero permutar →</button></div></article>
