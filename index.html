@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
 
 <style>
-/* Porsche negro con cálipers rojos: intro + hero */
+/* Porsche negro original compartido entre intro y hero; composición según referencia */
 #pitlane-intro:before{
  background:radial-gradient(ellipse at 50% 48%,rgba(190,198,208,.15),transparent 58%),radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.48));
 }
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded',function(){
  filter:drop-shadow(0 18px 22px rgba(0,0,0,.82)) drop-shadow(0 0 18px rgba(220,226,235,.13));
 }
 #pitlane-intro .intro-car img{
- width:100%;height:auto;display:block;filter:contrast(1.12) brightness(1.08) saturate(1.08);
+ width:100%;height:auto;display:block;filter:none!important;
 }
 #pitlane-intro .intro-wheel-layer{display:none!important}
 #pitlane-intro .intro-car:after{
@@ -282,27 +282,65 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 #pitlane-intro .intro-parking:after{width:min(82%,900px);border-color:rgba(220,226,235,.48)}
 #pitlane-intro .intro-parked .intro-parking:after{border-color:#e4e8ee;filter:drop-shadow(0 0 7px rgba(235,240,248,.5))}
-.hero-cinematic{background:#08090b!important;background-image:radial-gradient(ellipse at 50% 46%,#25282c 0%,#101214 45%,#070809 100%)!important}
-.hero-cinematic:before{background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.075),transparent 58%)!important}
-.hero-cinematic:after{background:linear-gradient(180deg,rgba(0,0,0,.08),transparent 50%,rgba(0,0,0,.32))!important}
-.hero-cinematic .hero-inner{position:relative}
-.hero-cinematic .hero-copy{min-height:460px}
-.hero-cinematic .hero-pitlane-mark{top:55px;left:50%;transform:translateX(-50%);width:100%;font-size:clamp(110px,19vw,270px);letter-spacing:-.09em;color:#fff;opacity:.12;z-index:0;white-space:nowrap}
-.hero-cinematic .hero-kicker,.hero-cinematic .hero-sub{color:rgba(255,255,255,.76)}
-.hero-car-stage{top:80px;width:min(92%,1240px);height:410px;z-index:2}
-.hero-car-stage img{
- width:100%;height:100%;object-fit:contain;transform:none!important;
- filter:drop-shadow(0 22px 18px rgba(0,0,0,.62)) drop-shadow(0 0 24px rgba(220,226,235,.12)) contrast(1.08) brightness(1.08) saturate(1.08)!important;
- animation:hero-car-settle 1.2s cubic-bezier(.2,.75,.25,1) both;
+.hero-cinematic{
+ min-height:720px;padding:0 5vw 34px!important;display:flex;align-items:stretch;position:relative;isolation:isolate;
+ background:#080808!important;color:#111!important;
 }
+.hero-cinematic:before{content:"";position:absolute;inset:34px 5vw 34px;background:#e9e9e9!important;z-index:-1}
+.hero-cinematic:after{content:"";position:absolute;inset:34px 5vw 34px;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 48%,rgba(0,0,0,.025));pointer-events:none}
+.hero-cinematic .hero-inner{width:100%;max-width:1440px;min-height:650px;display:flex;flex-direction:column;justify-content:space-between;padding:0 4.5%;position:relative}
+.hero-cinematic .hero-copy{position:relative;min-height:460px;max-width:none;margin:0;flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;padding:34px 0 0;z-index:1}
+.hero-cinematic .hero-kicker{font-size:10px;font-weight:700;letter-spacing:.24em;color:#555;margin:0 0 24px 4px}
+.hero-cinematic .hero-pitlane-mark{
+ position:absolute;top:62px;left:0;width:100%;font-family:"Michroma","Arial",sans-serif;
+ font-size:clamp(82px,13.1vw,190px);font-weight:400;line-height:.9;letter-spacing:-.075em;
+ white-space:nowrap;color:#080808;opacity:1;z-index:0;pointer-events:none;
+}
+.hero-cinematic .hero-sub{position:absolute;left:4px;top:265px;width:170px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.55;letter-spacing:.035em;text-transform:uppercase;color:#222;margin:0;z-index:3}
+.hero-car-stage{position:absolute;z-index:2;left:50%;top:100px;transform:translateX(-50%);width:min(78%,1020px);height:340px;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.hero-car-stage img{
+ display:block;width:100%;height:100%;object-fit:contain;
+ filter:drop-shadow(0 18px 12px rgba(0,0,0,.22))!important;
+ animation:hero-car-settle-mirrored 1.2s cubic-bezier(.2,.75,.25,1) both;
+}
+@keyframes hero-car-settle-mirrored{
+ from{transform:translateX(-8vw) scaleX(-1) scale(.96);opacity:.82}
+ to{transform:translateX(0) scaleX(-1) scale(1);opacity:1}
+}
+.hero-search-panel{position:relative;z-index:5;width:min(850px,100%);margin:0 auto}
+.hero-cinematic .panel{border-radius:3px;box-shadow:0 16px 48px rgba(0,0,0,.12);background:rgba(255,255,255,.98);border:1px solid rgba(0,0,0,.08)}
+.hero-cinematic .content{padding:20px 26px}
+.hero-cinematic .content h2{font-size:23px}
+.hero-cinematic .content p{margin:5px 0 0;font-size:13px}
+.hero-cinematic .tabs button{padding:14px 12px}
+.hero-cinematic .search{margin-top:13px}
+.hero-cinematic .micro{margin-top:11px}
+.hero-bottomline{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0 0;color:#666;font-size:9px;letter-spacing:.18em}
+.hero-bottomline a{color:#111;font-weight:700;letter-spacing:.14em}
+.nav{background:#e9e9e9;border-bottom-color:rgba(0,0,0,.08)}
+.top{background:#080808}
 @media(max-width:700px){
- #pitlane-intro .intro-stage{width:96vw}
+ .hero-cinematic{min-height:690px;padding:0 14px 22px!important}
+ .hero-cinematic:before,.hero-cinematic:after{inset:14px 14px 22px}
+ .hero-cinematic .hero-inner{min-height:654px;padding:0 18px}
+ .hero-cinematic .hero-copy{min-height:360px;padding-top:18px}
+ .hero-cinematic .hero-kicker{font-size:8px;letter-spacing:.15em;margin:8px 0 0}
+ .hero-cinematic .hero-pitlane-mark{top:90px;font-size:clamp(47px,13vw,90px);letter-spacing:-.075em}
+ .hero-car-stage{top:125px;width:112%;height:240px}
+ .hero-cinematic .hero-sub{top:285px;left:3px;width:130px;font-size:8px;line-height:1.45}
+ .hero-search-panel{width:100%}
+ .hero-cinematic .content{padding:16px 13px}
+ .hero-cinematic .content h2{font-size:19px}
+ .hero-cinematic .tabs button{font-size:11px;padding:13px 7px}
+ .hero-cinematic .search{grid-template-columns:1fr;gap:8px}
+ .hero-cinematic .search .primary{width:100%}
+ .hero-cinematic .micro{gap:12px;flex-wrap:wrap;font-size:10px}
+ .hero-bottomline{font-size:7px;letter-spacing:.08em;padding-top:14px}
+ .hero-bottomline a{letter-spacing:.06em}
  #pitlane-intro .intro-car{width:90vw;margin-left:-45vw}
  #pitlane-intro .intro-parking{height:clamp(130px,30vw,190px)}
- .hero-cinematic .hero-copy{min-height:370px}
- .hero-cinematic .hero-pitlane-mark{top:74px;font-size:clamp(66px,18vw,120px);letter-spacing:-.1em}
- .hero-car-stage{top:112px;width:96%;height:260px}
 }
+@media(prefers-reduced-motion:reduce){.hero-cinematic *{animation:none!important;scroll-behavior:auto}}
 </style>
 
 </head>
