@@ -344,25 +344,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </style>
 
 
-<style id="pitlane-porsche-final-fix">
-/* El mismo Porsche negro en intro y hero; sin filtros que destruyan sus detalles. */
-#pitlane-intro .intro-car img{
-  filter:none!important;
-  transform:none!important;
-}
-.hero-car-stage img{
-  transform:scaleX(-1)!important;
-  filter:drop-shadow(0 18px 12px rgba(0,0,0,.22))!important;
-  animation:pitlane-porsche-mirrored 1.2s cubic-bezier(.2,.75,.25,1) both!important;
-}
-@keyframes pitlane-porsche-mirrored{
-  from{transform:translateX(-8vw) scaleX(-1) scale(.96);opacity:.82}
-  to{transform:translateX(0) scaleX(-1) scale(1);opacity:1}
-}
-@media(max-width:700px){
-  .hero-car-stage img{transform:scaleX(-1)!important}
-}
-</style>
+
 
 </head>
 <body>
