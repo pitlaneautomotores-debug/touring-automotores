@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 
 <style id="pitlane-porsche-final-fix">
-/* Usar el render negro original sin filtros de color ni capas de ruedas heredadas. */
+/* Porsche negro: render limpio, sin capas SVG heredadas del vehículo anterior. */
 #pitlane-intro .intro-car img{filter:none!important}
 .hero-car-stage img{filter:drop-shadow(0 18px 12px rgba(0,0,0,.22))!important}</style>
 
@@ -420,31 +420,7 @@ document.addEventListener('DOMContentLoaded',function(){
     <div class="intro-parking" aria-hidden="true"><div class="intro-car">
       <img src="/public/porsche-black-red-calipers.svg" width="1000" height="357" alt="" fetchpriority="high" decoding="async" draggable="false">
 
-      <svg class="intro-glass-layer" viewBox="0 40 1000 298" aria-hidden="true">
-        <defs>
-          <clipPath id="porsche-glazing">
-            <path d="M256 112Q293 94 361 81L371 125L280 122Q248 120 256 112Z"/>
-            <path d="M382 78Q444 65 478 76Q510 87 553 119L549 132L400 128Z"/>
-            <path d="M510 77L527 83L634 134L614 131Z"/>
-          </clipPath>
-          <filter id="glass-sign-glow" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
-          <linearGradient id="glass-tint" x1="0" y1="65" x2="0" y2="135" gradientUnits="userSpaceOnUse"><stop stop-color="#121b22" stop-opacity=".94"/><stop offset=".6" stop-color="#080e13" stop-opacity=".92"/><stop offset="1" stop-color="#1d2831" stop-opacity=".88"/></linearGradient>
-          <linearGradient id="glass-light"><stop stop-color="#ffffff" stop-opacity="0"/><stop offset=".35" stop-color="#ffffff" stop-opacity=".05"/><stop offset=".52" stop-color="#ffffff" stop-opacity=".36"/><stop offset=".65" stop-color="#ffffff" stop-opacity=".13"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
-        </defs>
-        <g clip-path="url(#porsche-glazing)">
-          <path d="M240 60H650V140H240Z" fill="url(#glass-tint)"/>
-          <g class="intro-glass-reflection" transform="translate(650 0)">
-            <path d="M-160 60H200L255 140H-105Z" fill="url(#glass-light)" opacity=".35"/>
-            <g class="intro-light-beams" filter="url(#glass-sign-glow)">
-              <path d="M-115 48H-91L-25 152H-49Z" fill="#fff" opacity=".30"/>
-              <path d="M-28 48H16L82 152H38Z" fill="#fff" opacity=".23"/>
-              <path d="M85 48H102L168 152H151Z" fill="#fff" opacity=".32"/>
-            </g>
-            <path d="M-133 60H-125L-70 140H-78Z" fill="#dceaf5" opacity=".10"/>
-          </g>
-          <path d="M250 120Q405 141 556 128" fill="none" stroke="#91aaba" stroke-opacity=".15" stroke-width="2"/>
-        </g>
-      </svg>
+      
 
       <svg class="intro-headlights" viewBox="0 40 1000 298" aria-hidden="true" focusable="false">
         <defs>
