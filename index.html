@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded',function(){
 .hero-cinematic:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 44%,rgba(0,0,0,.025));pointer-events:none}
 .hero-cinematic .hero-inner{width:100%;max-width:1440px;min-height:650px;display:flex;flex-direction:column;justify-content:space-between;padding:0 4.5%;position:relative}
 .hero-cinematic .hero-copy{position:relative;min-height:440px;max-width:none;margin:0;flex:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;padding:34px 0 0;z-index:4;color:#000!important}
-.hero-cinematic .hero-kicker{font-size:10px;font-weight:700;letter-spacing:.24em;color:#000!important;margin:0 0 24px 4px}
+.hero-cinematic .hero-kicker{position:relative;z-index:6;max-width:245px;font-size:10px;font-weight:800;letter-spacing:.18em;line-height:1.6;color:#000!important;margin:0 0 24px -18px;text-wrap:balance}
 .hero-cinematic .hero-pitlane-mark{position:absolute;top:48px;left:0;width:min(100%,1120px);height:auto;color:#090909;opacity:1;z-index:0;pointer-events:none}
 .hero-cinematic .hero-sub{position:absolute;left:4px;top:265px;width:170px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.55;letter-spacing:.035em;text-transform:uppercase;color:#000!important;margin:0;z-index:5}
 .hero-car-stage{position:absolute;z-index:2;left:50%;top:100px;transform:translateX(-50%);width:min(78%,1020px);height:340px;display:flex;align-items:center;justify-content:center;pointer-events:none}
@@ -233,6 +233,8 @@ document.addEventListener('DOMContentLoaded',function(){
 .hero-cinematic .search{margin-top:13px}
 .hero-cinematic .micro{margin-top:11px}
 .hero-bottomline{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px 0 0;color:#666;font-size:9px;letter-spacing:.18em}
+.hero-cinematic .hero-bottomline,.hero-cinematic .hero-bottomline span,.hero-cinematic .hero-bottomline a{color:#000!important}
+.hero-cinematic .hero-bottomline span{font-weight:800;opacity:1!important}
 .hero-bottomline a{color:#111;font-weight:700;letter-spacing:.14em}
 .nav{background:#080808;border-bottom-color:#202020;color:#fff}.nav .brand,.nav .links,.nav .links a{color:#fff}.nav .pitlane-logo{color:#fff}.nav .wa{background:#fff;color:#080808}
 .top{background:#080808}
