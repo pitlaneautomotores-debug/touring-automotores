@@ -539,7 +539,6 @@ document.getElementById('stock-q').addEventListener('input',e=>{query=e.target.v
     intro.removeEventListener('touchmove', onTouchMove);
     window.removeEventListener('keydown', onKey);
     motion.removeEventListener('change', onMotion);
-    document.querySelector('.nav .brand')?.focus({preventScroll:true});
   }
   function finish(immediate = false) {
     if (closed) return;
