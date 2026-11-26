@@ -32,7 +32,6 @@ to anon, authenticated
 using (status in ('available','reserved','sold'));
 
 -- Escritura exclusiva para el correo administrador de PITLANE.
--- No alcanza con tener una cuenta autenticada.
 drop policy if exists "Authenticated admins can manage vehicles" on public.vehicles;
 drop policy if exists "PITLANE admin can manage vehicles" on public.vehicles;
 create policy "PITLANE admin can manage vehicles"
@@ -43,7 +42,10 @@ with check ((auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com');
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('pitlane-vehicles','pitlane-vehicles',true,10485760,array['image/jpeg','image/png','image/webp'])
-on conflict (id) do nothing;
+on conflict (id) do update
+set public = excluded.public,
+    file_size_limit = excluded.file_size_limit,
+    allowed_mime_types = excluded.allowed_mime_types;
 
 drop policy if exists "Public can view vehicle photos" on storage.objects;
 create policy "Public can view vehicle photos"
@@ -51,12 +53,14 @@ on storage.objects for select
 using (bucket_id = 'pitlane-vehicles');
 
 drop policy if exists "Authenticated admins can upload vehicle photos" on storage.objects;
+drop policy if exists "PITLANE admin can upload vehicle photos" on storage.objects;
 create policy "PITLANE admin can upload vehicle photos"
 on storage.objects for insert
 to authenticated
 with check (bucket_id = 'pitlane-vehicles' and (auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com');
 
 drop policy if exists "Authenticated admins can update vehicle photos" on storage.objects;
+drop policy if exists "PITLANE admin can update vehicle photos" on storage.objects;
 create policy "PITLANE admin can update vehicle photos"
 on storage.objects for update
 to authenticated
@@ -64,6 +68,7 @@ using (bucket_id = 'pitlane-vehicles' and (auth.jwt() ->> 'email') = 'pitlaneaut
 with check (bucket_id = 'pitlane-vehicles' and (auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com');
 
 drop policy if exists "Authenticated admins can delete vehicle photos" on storage.objects;
+drop policy if exists "PITLANE admin can delete vehicle photos" on storage.objects;
 create policy "PITLANE admin can delete vehicle photos"
 on storage.objects for delete
 to authenticated
