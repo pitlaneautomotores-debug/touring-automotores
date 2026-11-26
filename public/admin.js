@@ -1,11 +1,20 @@
-(() => {
- const cfg=window.PITLANE_SUPABASE||{};
- const configured=Boolean(cfg.url&&cfg.anonKey&&window.supabase);
+(async () => {
  const $=id=>document.getElementById(id);
+ const cfg=window.PITLANE_SUPABASE||{};
+ let createClient;
+ try {
+   ({createClient}=await import('https://esm.sh/@supabase/supabase-js@2'));
+ } catch (err) {
+   $('setup-note').textContent='No se pudo cargar el módulo de conexión de Supabase. Revisá la conexión a internet y recargá esta página. Detalle: '+(err?.message||err);
+   $('connection-state').textContent='Error al cargar Supabase.';
+   console.error('PITLANE Supabase module load failed:',err);
+   return;
+ }
+ const configured=Boolean(cfg.url&&cfg.anonKey&&createClient);
  let client=null,items=[],editing=null;
  const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  if(!configured){$('setup-note').textContent='Panel creado. Falta conectar el proyecto gratuito de base de datos y almacenamiento para habilitar el acceso.';$('connection-state').textContent='Sin conexión: pendiente de configurar Supabase.';return;}
- client=window.supabase.createClient(cfg.url,cfg.anonKey);
+ client=createClient(cfg.url,cfg.anonKey);
  $('login-form').classList.remove('hidden');$('setup-note').classList.add('hidden');
  function view(name){document.querySelectorAll('[id^="view-"]').forEach(el=>el.classList.add('hidden'));$('view-'+name).classList.remove('hidden');document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name));}
  async function refresh(){const {data,error}=await client.from('vehicles').select('*').order('created_at',{ascending:false});if(error){console.error(error);return;}items=data||[];render();}
