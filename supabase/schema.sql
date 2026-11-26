@@ -24,38 +24,47 @@ create table if not exists public.vehicles (
 
 alter table public.vehicles enable row level security;
 
--- Lectura pública únicamente de vehículos publicados.
+-- Lectura pública solo de unidades publicadas.
+drop policy if exists "Public can read visible vehicles" on public.vehicles;
 create policy "Public can read visible vehicles"
 on public.vehicles for select
+to anon, authenticated
 using (status in ('available','reserved','sold'));
 
--- La escritura requiere una sesión autenticada.
-create policy "Authenticated admins can manage vehicles"
+-- Escritura exclusiva para el correo administrador de PITLANE.
+-- No alcanza con tener una cuenta autenticada.
+drop policy if exists "Authenticated admins can manage vehicles" on public.vehicles;
+drop policy if exists "PITLANE admin can manage vehicles" on public.vehicles;
+create policy "PITLANE admin can manage vehicles"
 on public.vehicles for all
 to authenticated
-using (true)
-with check (true);
+using ((auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com')
+with check ((auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com');
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('pitlane-vehicles','pitlane-vehicles',true,10485760,array['image/jpeg','image/png','image/webp'])
 on conflict (id) do nothing;
 
+drop policy if exists "Public can view vehicle photos" on storage.objects;
 create policy "Public can view vehicle photos"
 on storage.objects for select
 using (bucket_id = 'pitlane-vehicles');
 
-create policy "Authenticated admins can upload vehicle photos"
+drop policy if exists "Authenticated admins can upload vehicle photos" on storage.objects;
+create policy "PITLANE admin can upload vehicle photos"
 on storage.objects for insert
 to authenticated
-with check (bucket_id = 'pitlane-vehicles');
+with check (bucket_id = 'pitlane-vehicles' and (auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com');
 
-create policy "Authenticated admins can update vehicle photos"
+drop policy if exists "Authenticated admins can update vehicle photos" on storage.objects;
+create policy "PITLANE admin can update vehicle photos"
 on storage.objects for update
 to authenticated
-using (bucket_id = 'pitlane-vehicles')
-with check (bucket_id = 'pitlane-vehicles');
+using (bucket_id = 'pitlane-vehicles' and (auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com')
+with check (bucket_id = 'pitlane-vehicles' and (auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com');
 
-create policy "Authenticated admins can delete vehicle photos"
+drop policy if exists "Authenticated admins can delete vehicle photos" on storage.objects;
+create policy "PITLANE admin can delete vehicle photos"
 on storage.objects for delete
 to authenticated
-using (bucket_id = 'pitlane-vehicles');
+using (bucket_id = 'pitlane-vehicles' and (auth.jwt() ->> 'email') = 'pitlaneautomotores@gmail.com');
