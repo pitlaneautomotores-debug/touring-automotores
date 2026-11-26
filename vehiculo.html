@@ -1,104 +1,97 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vehículo | PITLANE Automotores</title>
-  <meta name="description" content="Ficha de vehículo de PITLANE Automotores, Yerba Buena, Tucumán." />
-  <style>
-    *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;color:#111;background:#f4f4f2}a{color:inherit;text-decoration:none}
-    .top{height:30px;background:#0b0b0b;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
-    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:#0a0a0a;color:#fff;position:sticky;top:0;z-index:20}
-    .brand{height:68px;display:flex;align-items:center}.pitlane-logo{display:block;width:205px;height:auto}
-    .back{border:1px solid #444;border-radius:999px;padding:11px 16px;font-size:12px;font-weight:700}
-    .detail{max-width:1320px;margin:0 auto;padding:34px 0 90px}
-    .breadcrumb{display:inline-block;color:#666;font-size:13px;margin:0 0 22px}
-    .detail-layout{display:grid;grid-template-columns:minmax(320px,.72fr) minmax(0,1.28fr);gap:22px;align-items:start}
-    .info-panel{position:sticky;top:100px;background:#fff;border:1px solid #e5e5e2;padding:34px 32px;border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.055)}
-    .code{font-size:10px;font-weight:800;letter-spacing:.16em;color:#888}
-    .brand-name{color:#777;margin:25px 0 5px;font-size:13px}
-    .info-panel h1{font-size:clamp(34px,4vw,54px);letter-spacing:-.06em;font-weight:500;line-height:.98;margin:0}
-    .version{font-size:17px;color:#555;margin:12px 0 26px}
-    .facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e6e6e3}
-    .fact{padding:16px 8px 16px 0;border-bottom:1px solid #e6e6e3}
-    .fact:nth-child(even){padding-left:15px;border-left:1px solid #e6e6e3}
-    .fact span{display:block;color:#888;font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
-    .fact strong{font-size:14px;font-weight:650}
-    .price{margin:23px 0 18px}.price span{display:block;color:#888;font-size:11px;margin-bottom:4px}.price strong{font-size:26px}
-    .wa{display:block;background:#111;color:#fff;border-radius:10px;padding:15px 18px;font-weight:800;text-align:center}
-    .note{font-size:11px;color:#888;line-height:1.55;margin:12px 0 0}
-    .gallery-column{min-width:0}
-    .gallery-heading{display:flex;justify-content:space-between;align-items:end;margin:0 0 13px;gap:20px}
-    .gallery-heading h2{font-size:22px;font-weight:550;letter-spacing:-.04em;margin:0}
-    .gallery-heading span{font-size:11px;color:#888}
-    .photo-card{margin:0 0 16px;background:#fff;border:1px solid #e5e5e2;border-radius:14px;overflow:hidden}
-    .photo-card img{display:block;width:100%;max-height:570px;aspect-ratio:16/10;object-fit:cover;background:#e8e8e6}
-    .photo-copy{padding:17px 20px 19px}.photo-copy h3{font-size:16px;margin:0 0 6px;font-weight:650}.photo-copy p{font-size:13px;color:#666;line-height:1.65;margin:0}
-    .description-card{background:#fff;border:1px solid #e5e5e2;border-radius:14px;padding:25px 24px;margin-top:18px}
-    .eyebrow{font-size:10px;letter-spacing:.16em;color:#888;font-weight:800;text-transform:uppercase}
-    .description-card h2{font-size:24px;letter-spacing:-.045em;font-weight:550;margin:8px 0 12px}
-    .description-card p{color:#666;font-size:14px;line-height:1.75;margin:0}
-    .highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:19px 0 0;padding:0;list-style:none}
-    .highlights li{background:#f4f4f2;border-radius:8px;padding:12px 13px;font-size:12px;color:#444;line-height:1.5}
-    .not-found{background:#fff;border-radius:20px;padding:60px;text-align:center}.not-found h1{font-size:42px;font-weight:400}
-    .footer{background:#0b0b0b;color:#999;padding:28px 5vw;display:flex;justify-content:space-between;font-size:12px}
-    @media(max-width:1000px){.detail{margin:0 5vw}.detail-layout{grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr)}.info-panel{padding:26px 23px}}
-    @media(max-width:760px){.nav{height:70px}.pitlane-logo{width:170px}.detail{margin:0;padding:22px 18px 60px}.detail-layout{grid-template-columns:1fr;gap:16px}.info-panel{position:relative;top:auto;padding:27px 22px}.brand-name{margin-top:19px}.gallery-heading{margin-top:5px}.photo-card img{aspect-ratio:4/3;max-height:420px}.highlights{grid-template-columns:1fr 1fr}}
-    @media(max-width:520px){.top span:last-child{display:none}.back{padding:9px 12px;font-size:11px}.info-panel h1{font-size:40px}.facts .fact strong{font-size:13px}.photo-copy{padding:15px}.description-card{padding:21px 18px}.highlights{grid-template-columns:1fr}.footer{flex-direction:column;gap:8px}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vehículo | PITLANE</title>
+<meta name="description" content="Conocé esta unidad publicada por PITLANE Automotores.">
+<meta name="theme-color" content="#090909">
+<style>
+:root{color-scheme:light;--ink:#111;--muted:#777;--line:#e8e8e5;--paper:#f4f4f2;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}
+.top{height:30px;background:#090909;color:#aaa;display:flex;align-items:center;justify-content:space-between;padding:0 max(5vw,22px);font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.nav{height:76px;padding:0 max(5vw,22px);background:#090909;color:#fff;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:20;border-top:1px solid #222}
+.brand{display:flex;align-items:center}.pitlane-logo{width:190px;height:auto;display:block}.back{border:1px solid #454545;border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.04em;transition:.2s}.back:hover{background:#fff;color:#111}
+.detail{max-width:1440px;margin:auto;padding:30px 5vw 90px}.breadcrumb{font-size:11px;color:#777;display:inline-block;margin:0 0 22px}.detail-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(330px,.75fr);gap:26px;align-items:start}
+.gallery-column{min-width:0}.gallery-head{display:flex;align-items:end;justify-content:space-between;margin:0 0 14px}.eyebrow{font-size:9px;letter-spacing:.2em;font-weight:800;color:#888;text-transform:uppercase}.gallery-head h2{font-size:22px;font-weight:550;letter-spacing:-.045em;margin:7px 0 0}.gallery-count{font-size:10px;color:#888}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}.photo{margin:0;background:#e8e8e6;overflow:hidden;position:relative;border-radius:10px;cursor:zoom-in;min-height:180px}.photo:first-child{grid-column:1/-1;min-height:420px}.photo img{display:block;width:100%;height:100%;min-height:180px;max-height:330px;object-fit:cover;transition:transform .5s}.photo:first-child img{max-height:620px;min-height:420px}.photo:hover img{transform:scale(1.025)}.photo-tag{position:absolute;left:13px;bottom:13px;background:rgba(0,0,0,.68);color:#fff;padding:7px 10px;border-radius:4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.info-panel{position:sticky;top:126px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px;box-shadow:0 12px 36px rgba(0,0,0,.045)}
+.unit-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.code{font-size:9px;letter-spacing:.17em;color:#888;font-weight:800}.status{font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:7px 9px;border-radius:3px;background:#f0f0ed;color:#555}
+.brand-name{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#777;margin:27px 0 7px}.info-panel h1{font-size:clamp(34px,4vw,52px);letter-spacing:-.065em;font-weight:550;line-height:.98;margin:0}.version{font-size:15px;color:#666;margin:12px 0 20px;line-height:1.4}
+.price-box{padding:19px 0 21px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 20px}.price-label{display:block;font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:#888;margin-bottom:7px}.price-value{font-size:clamp(27px,3vw,36px);letter-spacing:-.055em;font-weight:650;line-height:1.1;overflow-wrap:anywhere}.price-note{font-size:10px;color:#888;margin-top:7px}
+.facts-title{font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:#888;font-weight:800;margin:0 0 11px}.facts{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;margin-bottom:21px}.fact{padding:11px 0;border-bottom:1px solid #eee}.fact span{display:block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#92928e;margin-bottom:5px}.fact strong{font-size:12px;font-weight:650}
+.wa{display:flex;justify-content:center;align-items:center;gap:10px;background:#111;color:#fff;border-radius:6px;padding:16px 18px;font-size:11px;letter-spacing:.06em;font-weight:800;transition:background .2s}.wa:hover{background:#333}.note{font-size:10px;color:#92928e;line-height:1.6;margin:12px 0 0;text-align:center}
+.description-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;margin-top:22px}.description-card h2{font-size:27px;font-weight:550;letter-spacing:-.05em;margin:8px 0 13px}.description-card p{font-size:13px;line-height:1.8;color:#666;margin:0;white-space:pre-line}.highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:20px 0 0;padding:0;list-style:none}.highlights li{background:#f5f5f3;border-radius:5px;padding:12px;font-size:11px;line-height:1.5;color:#444}
+.not-found{background:#fff;border-radius:14px;padding:60px 25px;text-align:center}.not-found h1{font-size:34px;font-weight:500;letter-spacing:-.05em}.not-found p{color:#777;font-size:13px}
+.footer{background:#090909;color:#888;padding:26px 5vw;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:100;display:none;align-items:center;justify-content:center;padding:5vh 5vw}.lightbox.open{display:flex}.lightbox img{max-width:100%;max-height:90vh;object-fit:contain}.lightbox button{position:absolute;top:20px;right:24px;background:transparent;color:#fff;border:1px solid #777;border-radius:50%;width:42px;height:42px;font-size:22px;cursor:pointer}
+.mobile-cta{display:none}
+@media(max-width:950px){.detail-layout{grid-template-columns:minmax(0,1.2fr) minmax(290px,.8fr);gap:16px}.info-panel{padding:22px}.photo:first-child,.photo:first-child img{min-height:340px}.gallery{gap:8px}}
+@media(max-width:700px){.top{height:26px}.nav{height:66px}.pitlane-logo{width:155px}.back{font-size:10px;padding:9px 12px}.detail{padding:20px 16px 100px}.detail-layout{display:flex;flex-direction:column;gap:18px}.gallery-column{display:contents}.gallery-head{order:0;width:100%;margin-bottom:0}.gallery{order:1;width:100%}.info-panel{order:2;position:static;width:100%;padding:24px 21px}.description-card{order:3;width:100%;margin-top:0;padding:23px 20px}.photo:first-child,.photo:first-child img{min-height:260px;max-height:390px}.photo,.photo img{min-height:125px}.info-panel h1{font-size:42px}.price-value{font-size:32px}.mobile-cta{display:block;position:fixed;bottom:0;left:0;right:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--line);backdrop-filter:blur(12px)}.mobile-cta .wa{padding:14px}.footer{padding-bottom:82px}}
+@media(max-width:420px){.gallery{gap:6px}.photo:first-child,.photo:first-child img{min-height:220px}.highlights{grid-template-columns:1fr}.info-panel h1{font-size:37px}}
+</style>
 </head>
 <body>
-  <div class="top"><span>Yerba Buena · Tucumán</span></div>
-  <nav class="nav">
-    <a class="brand" href="index.html" aria-label="Pitlane Automotores, volver al inicio"><svg class="pitlane-logo" viewBox="0 0 520 92" role="img" aria-label="Pitlane Automotores"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12 V54 M10 12 H54 Q68 12 68 25 Q68 38 54 38 H10"/><path d="M96 12 V54"/><path d="M125 12 H177 M151 12 V54"/><path d="M205 12 V54 H246"/><path d="M275 54 L302 12 L329 54"/><path d="M358 54 V12 L402 54 V12"/><path d="M438 12 V54 M438 12 H490 M438 33 H482 M438 54 H490"/></g><g fill="currentColor"><rect x="10" y="77" width="64" height="2" rx="1"/><rect x="446" y="77" width="64" height="2" rx="1"/><text x="260" y="82" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="500" letter-spacing="8">AUTOMOTORES</text></g></svg></a>
-    <a class="back" href="index.html#stock">← Volver a vehículos</a>
-  </nav>
-  <main class="detail" id="detail" aria-live="polite"></main>
-  <footer class="footer"><span>© 2026 PITLANE Automotores</span></footer>
-  <script src="public/vehicles.js"></script>
-  <script src="public/supabase-config.js"></script>
-  <script type="module">
-    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-    const WHATSAPP='5493816158785';
-    const id=new URLSearchParams(window.location.search).get('id');
-    let vehicle=null;
-    if(!vehicle&&id){
-      try{
-        const cfg=window.PITLANE_SUPABASE||{};
-        if(cfg.url&&cfg.anonKey){
-          const supabase=createClient(cfg.url,cfg.anonKey);
-          let result=await supabase.from('vehicles').select('*').eq('id',id).maybeSingle();
-          if(result.error&&result.error.code!=='22P02') throw result.error;
-          if(!result.data) result=await supabase.from('vehicles').select('*').eq('code',id).maybeSingle();
-          if(result.error) throw result.error;
-          const v=result.data;
-          if(v&&['available','reserved','sold'].includes(v.status)) vehicle={id:v.id,code:v.code,brand:v.brand,model:v.model,version:v.version,year:v.year,km:v.km,category:v.category,price:v.price,engine:v.engine,transmission:v.transmission,fuel:v.fuel,description:v.description,highlights:[],image:v.cover_url,photos:(Array.isArray(v.photos)?v.photos:[]).map(p=>Object.assign({},p,{src:p.url||p.src||''})).filter(p=>p.src)};
-        }
-      }catch(error){console.error('PITLANE: no se pudo cargar la ficha desde Supabase.',error);}
-    }
-    const detail=document.getElementById('detail');
-    const safe=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-    if(!vehicle){
-      document.title='Vehículo no encontrado | PITLANE Automotores';
-      detail.innerHTML='<section class="not-found"><h1>No encontramos ese vehículo</h1><p>La ficha solicitada no está disponible.</p><a class="wa" href="index.html#stock">Ver catálogo</a></section>';
-    }else{
-      const name=`${vehicle.brand} ${vehicle.model}`;
-      const message=`Hola PITLANE. Quiero consultar por el modelo de referencia ${name} ${vehicle.version} ${vehicle.year}.`;
-      document.title=`${name} ${vehicle.year} | PITLANE Automotores`;
-      const photos=(vehicle.photos||[{src:vehicle.image,alt:name,title:'Galería',description:vehicle.description}]).map(photo=>`<figure class="photo-card"><img src="${safe(photo.src)}" alt="${safe(photo.alt||name)}" loading="lazy"><figcaption class="photo-copy"><h3>${safe(photo.title||'Detalles del vehículo')}</h3><p>${safe(photo.description||'')}</p></figcaption></figure>`).join('');
-      const facts=[['Año',vehicle.year],['Kilometraje',vehicle.km],['Categoría',vehicle.category],['Motor',vehicle.engine],['Transmisión',vehicle.transmission],['Combustible',vehicle.fuel]];
-      detail.innerHTML=`<a class="breadcrumb" href="index.html#stock">← Volver al catálogo</a><div class="detail-layout">
-        <aside class="info-panel"><span class="code">PITLANE · ${safe(vehicle.code||vehicle.id)}</span><p class="brand-name">${safe(vehicle.brand)}</p><h1>${safe(vehicle.model)}</h1><p class="version">${safe(vehicle.version)}</p>
-          <div class="facts">${facts.map(([label,value])=>`<div class="fact"><span>${safe(label)}</span><strong>${safe(value||'Consultar')}</strong></div>`).join('')}</div>
-          <div class="price"><span>Precio / disponibilidad</span><strong>${safe(vehicle.price||'Consultar')}</strong></div>
-          <a class="wa" target="_blank" rel="noopener" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}">Consultar este modelo →</a>
-          <p class="note">Información de la unidad publicada por PITLANE. Consultá por disponibilidad, condiciones y detalles de la operación.</p>
-        </aside>
-        <section class="gallery-column"><div class="gallery-heading"><h2>Galería de la unidad</h2><span>${(vehicle.photos||[]).length} fotografías</span></div>
-          ${photos}
-          <article class="description-card"><span class="eyebrow">PITLANE · DESCRIPCIÓN</span><h2>Sobre este modelo</h2><p>${safe(vehicle.description)}</p><ul class="highlights">${(vehicle.highlights||[]).map(item=>`<li>${safe(item)}</li>`).join('')}</ul></article>
-        </section>
-      </div>`;
-    }
-  </script></body>
-</html>
+<div class="top"><span>Automotive · Yerba Buena, Tucumán</span><span>Selección · Intermediación · Consignación</span></div>
+<nav class="nav">
+<a class="brand" href="index.html" aria-label="PITLANE"><svg class="pitlane-logo" viewBox="0 0 520 64" role="img" aria-label="PITLANE"><g fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12 V54 M10 12 H54 Q68 12 68 25 Q68 38 54 38 H10"/><path d="M96 12 V54"/><path d="M125 12 H177 M151 12 V54"/><path d="M205 12 V54 H246"/><path d="M275 54 L302 12 L329 54"/><path d="M358 54 V12 L402 54 V12"/><path d="M438 12 V54 M438 12 H490 M438 33 H482 M438 54 H490"/></g></svg></a>
+<a class="back" href="index.html#stock">← Volver al inventario</a>
+</nav>
+<main class="detail" id="detail" aria-live="polite"></main>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada"><button type="button" id="lightbox-close" aria-label="Cerrar">×</button><img id="lightbox-image" alt=""></div>
+<footer class="footer"><span>© 2026 PITLANE</span><span>Yerba Buena · Tucumán</span></footer>
+<script src="public/vehicles.js"></script>
+<script src="public/supabase-config.js"></script>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+const WHATSAPP='5493816158785';
+const id=new URLSearchParams(location.search).get('id');
+let vehicle=null;
+try{
+ const cfg=window.PITLANE_SUPABASE||{};
+ if(cfg.url&&cfg.anonKey&&id){
+  const supabase=createClient(cfg.url,cfg.anonKey);
+  let result=await supabase.from('vehicles').select('*').eq('id',id).maybeSingle();
+  if(result.error&&result.error.code!=='22P02')throw result.error;
+  if(!result.data)result=await supabase.from('vehicles').select('*').eq('code',id).maybeSingle();
+  if(result.error)throw result.error;
+  const v=result.data;
+  if(v&&['available','reserved','sold'].includes(v.status)){
+   vehicle={id:v.id,code:v.code,brand:v.brand,model:v.model,version:v.version,year:v.year,km:v.km,category:v.category,price:v.price,engine:v.engine,transmission:v.transmission,fuel:v.fuel,description:v.description,highlights:v.highlights||[],image:v.cover_url,photos:Array.isArray(v.photos)?v.photos:[],status:v.status};
+  }
+ }
+}catch(error){console.error('PITLANE: error al cargar la ficha desde Supabase:',error);}
+const detail=document.getElementById('detail');
+const safe=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+if(!vehicle){
+ document.title='Vehículo no encontrado | PITLANE';
+ detail.innerHTML='<section class="not-found"><h1>No encontramos esta unidad</h1><p>La publicación puede haber cambiado o ya no estar disponible.</p><a class="wa" href="index.html#stock">Volver al inventario</a></section>';
+}else{
+ const name=[vehicle.brand,vehicle.model].filter(Boolean).join(' ');
+ const version=vehicle.version||'';
+ const price=String(vehicle.price??'').trim()||'Consultar';
+ const statusLabel={available:'Disponible',reserved:'Reservado',sold:'Vendido'}[vehicle.status]||'Consultar disponibilidad';
+ const message='Hola PITLANE. Quiero consultar por '+name+' '+version+' ('+vehicle.year+'). Precio publicado: '+price+'. Código '+(vehicle.code||vehicle.id)+'.';
+ document.title=[name,version,vehicle.year,'PITLANE'].filter(Boolean).join(' | ');
+ const galleryPhotos=[];
+ const cover=vehicle.image||'';
+ if(cover)galleryPhotos.push({src:cover,title:'Foto principal',alt:name+' - fotografía principal'});
+ (Array.isArray(vehicle.photos)?vehicle.photos:[]).forEach(p=>{
+  const photo=typeof p==='string'?{url:p}:p||{};
+  const src=photo.url||photo.src||'';
+  if(src&&!galleryPhotos.some(x=>x.src===src))galleryPhotos.push({src,title:photo.title||'Detalle de la unidad',alt:photo.alt||name});
+ });
+ const photosHtml=galleryPhotos.length?galleryPhotos.map((p,i)=>'<figure class="photo" data-photo="'+i+'"><img src="'+safe(p.src)+'" alt="'+safe(p.alt||name)+'" '+(i>1?'loading="lazy"':'')+'><span class="photo-tag">'+safe(p.title||('Fotografía '+(i+1)))+'</span></figure>').join(''):'<div class="photo" style="grid-column:1/-1;min-height:260px;display:grid;place-items:center;color:#777;font-size:12px">Fotografías próximamente</div>';
+ const specs=[['Año',vehicle.year],['Kilometraje',vehicle.km],['Categoría',vehicle.category],['Motor',vehicle.engine],['Transmisión',vehicle.transmission],['Combustible',vehicle.fuel]].filter(x=>String(x[1]??'').trim()!=='');
+ const factsHtml=specs.map(([k,v])=>'<div class="fact"><span>'+safe(k)+'</span><strong>'+safe(v)+'</strong></div>').join('');
+ const highlights=Array.isArray(vehicle.highlights)?vehicle.highlights:[];
+ const highlightsHtml=highlights.length?'<ul class="highlights">'+highlights.map(x=>'<li>'+safe(x)+'</li>').join('')+'</ul>':'';
+ const description=String(vehicle.description||'').trim();
+ detail.innerHTML='<a class="breadcrumb" href="index.html#stock">← Inventario PITLANE</a><div class="detail-layout"><section class="gallery-column"><div class="gallery-head"><div><div class="eyebrow">PITLANE · '+safe(vehicle.code||'UNIDAD')+'</div><h2>Galería de la unidad</h2></div><span class="gallery-count">'+galleryPhotos.length+' '+(galleryPhotos.length===1?'fotografía':'fotografías')+'</span></div><div class="gallery">'+photosHtml+'</div><article class="description-card"><span class="eyebrow">Información de la unidad</span><h2>Descripción</h2><p>'+(description?safe(description):'Consultanos para recibir más información sobre esta unidad.')+'</p>'+highlightsHtml+'</article></section><aside class="info-panel"><div class="unit-top"><span class="code">CÓDIGO '+safe(vehicle.code||vehicle.id)+'</span><span class="status">'+safe(statusLabel)+'</span></div><p class="brand-name">'+safe(vehicle.brand)+'</p><h1>'+safe(vehicle.model)+'</h1><p class="version">'+safe(version||'')+'</p><div class="price-box"><span class="price-label">Precio publicado</span><div class="price-value">'+safe(price)+'</div><div class="price-note">'+(price==='Consultar'?'Consultá el valor y las condiciones de venta.':'Valor informado por PITLANE · sujeto a confirmación.')+'</div></div><p class="facts-title">Características</p><div class="facts">'+(factsHtml||'<div class="fact"><span>Información</span><strong>Consultar</strong></div>')+'</div><a class="wa" target="_blank" rel="noopener" href="https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(message)+'">Consultar por esta unidad <span>↗</span></a><p class="note">Atención personalizada · Yerba Buena, Tucumán</p></aside></div><div class="mobile-cta"><a class="wa" target="_blank" rel="noopener" href="https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(message)+'">Consultar por esta unidad · '+safe(price)+'</a></div>';
+ document.querySelectorAll('[data-photo]').forEach(el=>el.addEventListener('click',()=>{const p=galleryPhotos[Number(el.dataset.photo)];if(!p)return;const lb=document.getElementById('lightbox');document.getElementById('lightbox-image').src=p.src;document.getElementById('lightbox-image').alt=p.alt||name;lb.classList.add('open');}));
+}
+const lb=document.getElementById('lightbox');
+document.getElementById('lightbox-close').addEventListener('click',()=>lb.classList.remove('open'));
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+</script>
+</body></html>
