@@ -1,6 +1,6 @@
-// Se completa al crear el proyecto gratuito de PITLANE en Supabase.
-// La anon key es pública por diseño; la seguridad depende de las políticas RLS del esquema.
+// Claves públicas del proyecto Supabase de PITLANE.
+// La seguridad de escritura depende de las políticas RLS del esquema.
 window.PITLANE_SUPABASE = {
-  url: "",
-  anonKey: ""
+  url: "https://yemtnvupggewxtcyjtfc.supabase.co",
+  anonKey: "sb_publishable_pEq39QctLMW59F_4xeHOhg_0VD2wZZR"
 };
