@@ -23,6 +23,9 @@ create table if not exists public.vehicles (
 );
 
 alter table public.vehicles enable row level security;
+grant usage on schema public to anon, authenticated;
+grant select on table public.vehicles to anon, authenticated;
+grant insert, update, delete on table public.vehicles to authenticated;
 
 -- Lectura pública solo de unidades publicadas.
 drop policy if exists "Public can read visible vehicles" on public.vehicles;
