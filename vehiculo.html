@@ -61,7 +61,7 @@
     import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
     const WHATSAPP='5493816158785';
     const id=new URLSearchParams(window.location.search).get('id');
-    let vehicle=(window.PITLANE_VEHICLES||[]).find(item=>item.id===id)||null;
+    let vehicle=null;
     if(!vehicle&&id){
       try{
         const cfg=window.PITLANE_SUPABASE||{};
