@@ -56,10 +56,26 @@
   <main class="detail" id="detail" aria-live="polite"></main>
   <footer class="footer"><span>© 2026 PITLANE Automotores</span></footer>
   <script src="public/vehicles.js"></script>
-  <script>
+  <script src="public/supabase-config.js"></script>
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
     const WHATSAPP='5493816158785';
     const id=new URLSearchParams(window.location.search).get('id');
-    const vehicle=window.PITLANE_VEHICLES.find(item=>item.id===id);
+    let vehicle=(window.PITLANE_VEHICLES||[]).find(item=>item.id===id)||null;
+    if(!vehicle&&id){
+      try{
+        const cfg=window.PITLANE_SUPABASE||{};
+        if(cfg.url&&cfg.anonKey){
+          const supabase=createClient(cfg.url,cfg.anonKey);
+          let result=await supabase.from('vehicles').select('*').eq('id',id).maybeSingle();
+          if(result.error&&result.error.code!=='22P02') throw result.error;
+          if(!result.data) result=await supabase.from('vehicles').select('*').eq('code',id).maybeSingle();
+          if(result.error) throw result.error;
+          const v=result.data;
+          if(v&&['available','reserved','sold'].includes(v.status)) vehicle={id:v.id,brand:v.brand,model:v.model,version:v.version,year:v.year,km:v.km,category:v.category,price:v.price,engine:v.engine,transmission:v.transmission,fuel:v.fuel,description:v.description,highlights:[],image:v.cover_url,photos:(Array.isArray(v.photos)?v.photos:[]).map(p=>Object.assign({},p,{src:p.url||p.src||''})).filter(p=>p.src)};
+        }
+      }catch(error){console.error('PITLANE: no se pudo cargar la ficha desde Supabase.',error);}
+    }
     const detail=document.getElementById('detail');
     const safe=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
     if(!vehicle){
