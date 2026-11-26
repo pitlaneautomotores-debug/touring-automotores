@@ -72,7 +72,7 @@
           if(!result.data) result=await supabase.from('vehicles').select('*').eq('code',id).maybeSingle();
           if(result.error) throw result.error;
           const v=result.data;
-          if(v&&['available','reserved','sold'].includes(v.status)) vehicle={id:v.id,brand:v.brand,model:v.model,version:v.version,year:v.year,km:v.km,category:v.category,price:v.price,engine:v.engine,transmission:v.transmission,fuel:v.fuel,description:v.description,highlights:[],image:v.cover_url,photos:(Array.isArray(v.photos)?v.photos:[]).map(p=>Object.assign({},p,{src:p.url||p.src||''})).filter(p=>p.src)};
+          if(v&&['available','reserved','sold'].includes(v.status)) vehicle={id:v.id,code:v.code,brand:v.brand,model:v.model,version:v.version,year:v.year,km:v.km,category:v.category,price:v.price,engine:v.engine,transmission:v.transmission,fuel:v.fuel,description:v.description,highlights:[],image:v.cover_url,photos:(Array.isArray(v.photos)?v.photos:[]).map(p=>Object.assign({},p,{src:p.url||p.src||''})).filter(p=>p.src)};
         }
       }catch(error){console.error('PITLANE: no se pudo cargar la ficha desde Supabase.',error);}
     }
@@ -88,13 +88,13 @@
       const photos=(vehicle.photos||[{src:vehicle.image,alt:name,title:'Galería',description:vehicle.description}]).map(photo=>`<figure class="photo-card"><img src="${safe(photo.src)}" alt="${safe(photo.alt||name)}" loading="lazy"><figcaption class="photo-copy"><h3>${safe(photo.title||'Detalles del vehículo')}</h3><p>${safe(photo.description||'')}</p></figcaption></figure>`).join('');
       const facts=[['Año',vehicle.year],['Kilometraje',vehicle.km],['Categoría',vehicle.category],['Motor',vehicle.engine],['Transmisión',vehicle.transmission],['Combustible',vehicle.fuel]];
       detail.innerHTML=`<a class="breadcrumb" href="index.html#stock">← Volver al catálogo</a><div class="detail-layout">
-        <aside class="info-panel"><span class="code">MODELO DE REFERENCIA · ${safe(vehicle.id)}</span><p class="brand-name">${safe(vehicle.brand)}</p><h1>${safe(vehicle.model)}</h1><p class="version">${safe(vehicle.version)}</p>
+        <aside class="info-panel"><span class="code">PITLANE · ${safe(vehicle.code||vehicle.id)}</span><p class="brand-name">${safe(vehicle.brand)}</p><h1>${safe(vehicle.model)}</h1><p class="version">${safe(vehicle.version)}</p>
           <div class="facts">${facts.map(([label,value])=>`<div class="fact"><span>${safe(label)}</span><strong>${safe(value||'Consultar')}</strong></div>`).join('')}</div>
-          <div class="price"><span>Precio / disponibilidad</span><strong>Consultar</strong></div>
+          <div class="price"><span>Precio / disponibilidad</span><strong>${safe(vehicle.price||'Consultar')}</strong></div>
           <a class="wa" target="_blank" rel="noopener" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}">Consultar este modelo →</a>
-          <p class="note">Modelo de referencia para mostrar la categoría. La unidad, versión, kilometraje, equipamiento y disponibilidad se confirman al momento de la consulta.</p>
+          <p class="note">Información de la unidad publicada por PITLANE. Consultá por disponibilidad, condiciones y detalles de la operación.</p>
         </aside>
-        <section class="gallery-column"><div class="gallery-heading"><h2>Fotos y detalles</h2><span>${(vehicle.photos||[]).length} imágenes de referencia</span></div>
+        <section class="gallery-column"><div class="gallery-heading"><h2>Galería de la unidad</h2><span>${(vehicle.photos||[]).length} fotografías</span></div>
           ${photos}
           <article class="description-card"><span class="eyebrow">PITLANE · DESCRIPCIÓN</span><h2>Sobre este modelo</h2><p>${safe(vehicle.description)}</p><ul class="highlights">${(vehicle.highlights||[]).map(item=>`<li>${safe(item)}</li>`).join('')}</ul></article>
         </section>
